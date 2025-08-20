@@ -72,6 +72,10 @@ code {
   grid-template-columns: minmax(min-content, max-content) 1fr;
   overflow-x: auto;
   overscroll-behavior-x: contain;
+  tab-size: 2;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
 }
 
 [data-line] {
