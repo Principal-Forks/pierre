@@ -51,7 +51,7 @@ export async function createChunkedRenderer() {
             node.properties['data-column-content'] = '';
             delete node.properties.class;
             const children = [node];
-            const lineNr = startingLine != null ? startingLine + 1 : line;
+            const lineNr = startingLine != null ? startingLine++ + 1 : line;
             if (showLineNumbers) {
               children.unshift({
                 tagName: 'div',
@@ -59,9 +59,6 @@ export async function createChunkedRenderer() {
                 properties: { 'data-column-number': '' },
                 children: [{ type: 'text', value: `${lineNr}` }],
               });
-              if (startingLine != null) {
-                startingLine += 1;
-              }
             }
             return {
               tagName: 'div',
