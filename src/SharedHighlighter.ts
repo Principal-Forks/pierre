@@ -3,6 +3,7 @@ import {
   type BundledTheme,
   createHighlighter,
   createOnigurumaEngine,
+  createJavaScriptRegexEngine,
   type HighlighterGeneric,
   loadWasm,
 } from 'shiki';
@@ -17,23 +18,31 @@ const loadedLanguages = new Set<BundledLanguage>();
 interface HighlighterOptions {
   themes: BundledTheme[];
   langs: BundledLanguage[];
+  preferJSHighlighter?: boolean;
 }
 
-export async function getSharedHighlighter(options: HighlighterOptions) {
+export async function getSharedHighlighter({
+  themes,
+  langs,
+  preferJSHighlighter = false,
+}: HighlighterOptions) {
   if (highlighter == null) {
     highlighter = new Promise((resolve) => {
-      loadWasm(import('shiki/wasm'))
+      (preferJSHighlighter ? Promise.resolve() : loadWasm(import('shiki/wasm')))
         .then(() =>
           createHighlighter({
-            ...options,
-            engine: createOnigurumaEngine(),
+            themes,
+            langs,
+            engine: preferJSHighlighter
+              ? createJavaScriptRegexEngine()
+              : createOnigurumaEngine(),
           })
         )
         .then((instance) => {
-          for (const theme of options.themes) {
+          for (const theme of themes) {
             loadedThemes.add(theme);
           }
-          for (const language of options.langs) {
+          for (const language of langs) {
             loadedLanguages.add(language);
           }
           resolve(instance);
@@ -41,7 +50,6 @@ export async function getSharedHighlighter(options: HighlighterOptions) {
     });
     return highlighter;
   }
-  const { themes, langs } = options;
   const loaders: Promise<void>[] = [];
   for (const language of langs) {
     if (!loadedLanguages.has(language)) {
