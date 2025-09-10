@@ -16,7 +16,7 @@ export function createFakeContentStream(data: string, letterByLetter = false) {
         }
         return chunks;
       })();
-      let timeout: NodeJS.Timeout | null = null;
+      let timeout: ReturnType<typeof setTimeout> | null = null;
       function pushNext() {
         const nextData = randomizedData.shift();
         if (nextData == null) {
