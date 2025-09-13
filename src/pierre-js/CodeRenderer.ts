@@ -130,6 +130,7 @@ export class CodeRenderer {
   private currentLineElement: HTMLElement | undefined;
   render = () => {
     this.options.onPreRender?.(this);
+    const linesToAppend: HTMLElement[] = [];
     for (const token of this.queuedTokens) {
       if ('recall' in token) {
         if (this.currentLineElement == null) {
@@ -148,14 +149,17 @@ export class CodeRenderer {
       } else {
         const span = createSpanFromToken(token);
         if (this.currentLineElement == null) {
-          this.createLine();
+          linesToAppend.push(this.createLine());
         }
         this.currentLineElement?.appendChild(span);
         if (token.content === '\n') {
           this.currentLineIndex++;
-          this.createLine();
+          linesToAppend.push(this.createLine());
         }
       }
+    }
+    for (const line of linesToAppend) {
+      this.code?.appendChild(line);
     }
     this.queuedTokens.length = 0;
     this.options.onPostRender?.(this);
@@ -163,8 +167,8 @@ export class CodeRenderer {
 
   private createLine() {
     const { row, content } = createRow(this.currentLineIndex);
-    this.code?.appendChild(row);
     this.currentLineElement = content;
+    return row;
   }
 
   private getHighlighterOptions() {
