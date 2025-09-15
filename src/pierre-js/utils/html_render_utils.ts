@@ -66,7 +66,7 @@ export function setupWrapperNodes(props: SetupWrapperNodesProps) {
 
 function setWrapperProps(
   { pre, highlighter, theme, themes }: SetupWrapperNodesProps,
-  prefix = 'shiki'
+  prefix = 'pjs' // probably should make this our own theme-ing variables
 ) {
   let styles = '';
   if (theme != null) {

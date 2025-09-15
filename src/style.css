@@ -151,7 +151,7 @@ code {
 [data-line]:hover [data-column-content] {
   background-color: color-mix(
     in srgb,
-    var(--shiki-light-bg, var(--shiki-bg)) 95%,
+    var(--pjs-light-bg, var(--pjs-bg)) 95%,
     black
   );
 }
@@ -161,7 +161,7 @@ code {
   [data-line]:hover [data-column-content] {
     background-color: color-mix(
       in srgb,
-      var(--shiki-dark-bg, var(--shiki-bg)) 95%,
+      var(--pjs-dark-bg, var(--pjs-bg)) 95%,
       white
     );
   }
@@ -171,7 +171,7 @@ code {
 [data-theme='light'] [data-line]:hover [data-column-content] {
   background-color: color-mix(
     in srgb,
-    var(--shiki-light-bg, var(--shiki-bg)) 95%,
+    var(--pjs-light-bg, var(--pjs-bg)) 95%,
     black
   );
 }
@@ -180,7 +180,7 @@ code {
 [data-theme='dark'] [data-line]:hover [data-column-content] {
   background-color: color-mix(
     in srgb,
-    var(--shiki-dark-bg, var(--shiki-bg)) 95%,
+    var(--pjs-dark-bg, var(--pjs-bg)) 95%,
     white
   );
 }
@@ -212,55 +212,55 @@ code {
 }
 
 [data-pierrejs] {
-  background-color: var(--shiki-light-bg);
-  color: var(--shiki-light);
+  background-color: var(--pjs-light-bg);
+  color: var(--pjs-light);
 
   & span {
-    color: var(--shiki-light);
+    color: var(--pjs-light);
   }
 
   & [data-column-number] {
-    background-color: var(--shiki-light-bg);
+    background-color: var(--pjs-light-bg);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   [data-pierrejs] {
-    background-color: var(--shiki-dark-bg);
-    color: var(--shiki-dark);
+    background-color: var(--pjs-dark-bg);
+    color: var(--pjs-dark);
 
     & span {
-      color: var(--shiki-dark);
+      color: var(--pjs-dark);
     }
 
     & [data-column-number] {
-      background-color: var(--shiki-dark-bg);
+      background-color: var(--pjs-dark-bg);
     }
   }
 }
 
 [data-theme='light'] {
-  background-color: var(--shiki-light-bg);
-  color: var(--shiki-light);
+  background-color: var(--pjs-light-bg);
+  color: var(--pjs-light);
 
   & span {
-    color: var(--shiki-light);
+    color: var(--pjs-light);
   }
 
   & [data-column-number] {
-    background-color: var(--shiki-light-bg);
+    background-color: var(--pjs-light-bg);
   }
 }
 
 [data-theme='dark'] {
-  background-color: var(--shiki-dark-bg);
-  color: var(--shiki-dark);
+  background-color: var(--pjs-dark-bg);
+  color: var(--pjs-dark);
 
   & span {
-    color: var(--shiki-dark);
+    color: var(--pjs-dark);
   }
 
   & [data-column-number] {
-    background-color: var(--shiki-dark-bg);
+    background-color: var(--pjs-dark-bg);
   }
 }
