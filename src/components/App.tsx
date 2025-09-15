@@ -35,8 +35,12 @@ export function App() {
       const themes: BundledTheme[] = [];
       for (const item of CodeConfigs) {
         langs.push(item.options.lang);
-        themes.push(item.options.themes.dark);
-        themes.push(item.options.themes.light);
+        if ('themes' in item.options) {
+          themes.push(item.options.themes.dark);
+          themes.push(item.options.themes.light);
+        } else if ('theme' in item.options) {
+          themes.push(item.options.theme);
+        }
       }
       preloadHighlighter({ langs, themes });
     }

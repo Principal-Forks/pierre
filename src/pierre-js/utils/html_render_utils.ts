@@ -4,6 +4,17 @@ import {
   stringifyTokenStyle,
   type ThemedToken,
 } from 'shiki';
+import type { ThemesType } from 'pierrejs';
+
+interface ThemeVariant {
+  themes?: never;
+  theme: BundledTheme;
+}
+
+interface ThemesVariant {
+  themes: ThemesType;
+  theme?: never;
+}
 
 export function createSpanFromToken(token: ThemedToken) {
   const element = document.createElement('span');
@@ -29,11 +40,18 @@ export function createRow(line: number) {
   return { row, content };
 }
 
-export function setupWrapperNodes(
-  pre: HTMLPreElement,
-  themes: { dark: BundledTheme; light: BundledTheme },
-  highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>
-) {
+interface SetupWrapperBase {
+  pre: HTMLPreElement;
+  highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
+}
+
+interface SetupWrapperTheme extends ThemeVariant, SetupWrapperBase {}
+
+interface SetupWrapperThemes extends ThemesVariant, SetupWrapperBase {}
+
+type SetupWrapperNodesProps = SetupWrapperTheme | SetupWrapperThemes;
+
+export function setupWrapperNodes({ pre, ...props }: SetupWrapperNodesProps) {
   // Clean out container
   pre.innerHTML = '';
   pre.tabIndex = 0;
@@ -41,29 +59,43 @@ export function setupWrapperNodes(
   // out how to systemize this better most likely
   pre.dataset.theme = 'dark';
   pre.dataset.pre = '';
-  pre.style = getEditorStyles(highlighter, themes);
+  pre.style = getEditorStyles(props);
   const code = document.createElement('code');
   code.dataset.code = '';
   pre.appendChild(code);
   return { pre, code };
 }
 
-export function getEditorStyles(
-  highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>,
-  // NOTE(amadeus): Terrible super hack, fix this properly... boiii
-  themes: { dark: BundledTheme; light: BundledTheme },
-  prefix: string = 'shiki'
-) {
+interface GetEditorStylesBase {
+  highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
+  prefix?: string;
+}
+
+interface GetEditorStylesThemes extends ThemeVariant, GetEditorStylesBase {}
+
+interface GetEditorStylesTheme extends ThemesVariant, GetEditorStylesBase {}
+
+type GetEditorStylesProps = GetEditorStylesTheme | GetEditorStylesThemes;
+
+export function getEditorStyles({
+  highlighter,
+  theme,
+  themes,
+  prefix = 'shiki',
+}: GetEditorStylesProps) {
   let styles = '';
-  for (const themeKey of highlighter.getLoadedThemes()) {
-    const theme = highlighter.getTheme(themeKey);
-    if (themeKey === themes.dark) {
-      styles += `--${prefix}-dark:${theme.fg};`;
-      styles += `--${prefix}-dark-bg:${theme.bg};`;
-    } else if (themeKey === themes.light) {
-      styles += `--${prefix}-light:${theme.fg};`;
-      styles += `--${prefix}-light-bg:${theme.bg};`;
-    }
+  if (theme != null) {
+    const themeData = highlighter.getTheme(theme);
+    styles += `color:${themeData.fg};`;
+    styles += `background-color:${themeData.bg};`;
+  } else {
+    let themeData = highlighter.getTheme(themes.dark);
+    styles += `--${prefix}-dark:${themeData.fg};`;
+    styles += `--${prefix}-dark-bg:${themeData.bg};`;
+
+    themeData = highlighter.getTheme(themes.light);
+    styles += `--${prefix}-light:${themeData.fg};`;
+    styles += `--${prefix}-light-bg:${themeData.bg};`;
   }
   return styles;
 }

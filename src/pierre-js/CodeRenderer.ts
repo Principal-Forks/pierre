@@ -78,14 +78,20 @@ export class CodeRenderer {
     }
 
     const [stream, wrapper] = this.queuedSetupArgs;
-    const { onStreamStart, onStreamClose, onStreamAbort } = this.options;
+    const { onStreamStart, onStreamClose, onStreamAbort, themes, theme } =
+      this.options;
     const { pre, code } = setupWrapperNodes(
-      wrapper,
-      this.options.themes ?? {
-        dark: this.options.theme,
-        light: this.options.theme,
-      },
-      this.highlighter
+      themes != null
+        ? {
+            pre: wrapper,
+            themes,
+            highlighter: this.highlighter,
+          }
+        : {
+            pre: wrapper,
+            theme,
+            highlighter: this.highlighter,
+          }
     );
 
     this.queuedSetupArgs = undefined;

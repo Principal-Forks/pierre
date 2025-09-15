@@ -11,7 +11,7 @@ export const CodeConfigs = [
     letterByLetter: false,
     options: {
       lang: 'typescript',
-      themes: { dark: 'tokyo-night', light: 'vitesse-light' },
+      theme: 'tokyo-night',
       defaultColor: false,
       ...createScrollFixer(),
       ...createHighlighterCleanup(),
