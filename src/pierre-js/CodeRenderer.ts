@@ -7,6 +7,7 @@ import type {
 import {
   createRow,
   createSpanFromToken,
+  formatCSSVariablePrefix,
   setupWrapperNodes,
 } from './utils/html_render_utils';
 import type { BundledLanguage, BundledTheme } from 'shiki';
@@ -107,7 +108,7 @@ export class CodeRenderer {
         new CodeToTokenTransformStream({
           highlighter: this.highlighter,
           allowRecalls: true,
-          cssVariablePrefix: '--pjs-',
+          cssVariablePrefix: formatCSSVariablePrefix(),
           ...this.options,
         })
       )

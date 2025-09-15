@@ -66,25 +66,29 @@ export function setupWrapperNodes(props: SetupWrapperNodesProps) {
 
 function setWrapperProps(
   { pre, highlighter, theme, themes }: SetupWrapperNodesProps,
-  prefix = 'pjs' // probably should make this our own theme-ing variables
+  prefix?: string
 ) {
   let styles = '';
   if (theme != null) {
     const themeData = highlighter.getTheme(theme);
     styles += `color:${themeData.fg};`;
     styles += `background-color:${themeData.bg};`;
-    styles += `--${prefix}-fg:${themeData.fg};`;
-    styles += `--${prefix}-bg:${themeData.bg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}-fg:${themeData.fg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}-bg:${themeData.bg};`;
     pre.dataset.theme = themeData.type;
   } else {
     let themeData = highlighter.getTheme(themes.dark);
-    styles += `--${prefix}-dark:${themeData.fg};`;
-    styles += `--${prefix}-dark-bg:${themeData.bg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}dark:${themeData.fg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}dark-bg:${themeData.bg};`;
 
     themeData = highlighter.getTheme(themes.light);
-    styles += `--${prefix}-light:${themeData.fg};`;
-    styles += `--${prefix}-light-bg:${themeData.bg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}light:${themeData.fg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}light-bg:${themeData.bg};`;
     pre.dataset.themed = '';
   }
   pre.style = styles;
+}
+
+export function formatCSSVariablePrefix(prefix: string = 'pjs') {
+  return `--${prefix}-`;
 }
