@@ -166,6 +166,7 @@ code {
   background-color: #000;
   color: #fff;
   padding: 10px;
+  font-weight: 700;
 }
 
 [data-separator] {
@@ -373,11 +374,13 @@ code {
   }
 }
 
-[data-additions] [data-line-type='change'] {
+[data-additions] [data-line-type='change'],
+[data-additions] [data-line-type='change'] [data-column-number] {
   background-color: rgba(0, 255, 0, 0.1);
 }
 
-[data-deletions] [data-line-type='change'] {
+[data-deletions] [data-line-type='change'],
+[data-deletions] [data-line-type='change'] [data-column-number] {
   background-color: rgba(255, 0, 0, 0.1);
 }
 

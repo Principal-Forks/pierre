@@ -111,7 +111,6 @@ function setWrapperProps(
     themeData = highlighter.getTheme(themes.light);
     styles += `${formatCSSVariablePrefix(prefix)}light:${themeData.fg};`;
     styles += `${formatCSSVariablePrefix(prefix)}light-bg:${themeData.bg};`;
-    pre.dataset.themed = '';
   }
   pre.dataset.type = split ? 'split' : 'file';
   pre.dataset.overflow = wrap ? 'wrap' : 'scroll';
