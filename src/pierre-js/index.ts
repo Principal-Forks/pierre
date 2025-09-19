@@ -1,5 +1,6 @@
 import './style.css';
 export * from './CodeRenderer';
+export * from './DiffRenderer';
 export * from './SharedHighlighter';
 export * from './UnversialRenderer';
 export * from './createStreamingHighlighter';

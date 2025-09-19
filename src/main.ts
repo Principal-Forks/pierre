@@ -9,17 +9,21 @@ import {
 import { createFakeContentStream } from './utils/createFakeContentStream';
 import {
   CodeRenderer,
+  DiffRenderer,
   isHighlighterNull,
   preloadHighlighter,
   parsePatchContent,
   type ParsedPatch,
 } from 'pierrejs';
 
-function startStreaming(event: MouseEvent) {
+function startStreaming() {
   const container = document.getElementById('content');
   if (container == null) return;
-  if (event.currentTarget instanceof HTMLElement) {
-    event.currentTarget.parentNode?.removeChild(event.currentTarget);
+  if (loadDiff != null) {
+    loadDiff.parentElement?.removeChild(loadDiff);
+  }
+  if (streamCode != null) {
+    streamCode.parentElement?.removeChild(streamCode);
   }
   for (const { content, letterByLetter, options } of CodeConfigs) {
     const pre = document.createElement('pre');
@@ -52,13 +56,16 @@ function renderDiff() {
   if (loadDiff != null) {
     loadDiff.parentElement?.removeChild(loadDiff);
   }
+  if (streamCode != null) {
+    streamCode.parentElement?.removeChild(streamCode);
+  }
   container.dataset.diff = '';
   parsedPatch = parsedPatch ?? parsePatchContent(DIFF_CONTENT);
   for (const file of parsedPatch.files) {
     const pre = document.createElement('pre');
     pre.dataset.theme = 'dark';
     container.appendChild(pre);
-    const instance = new CodeRenderer({
+    const instance = new DiffRenderer({
       lang: getFiletypeFromMetadata(file),
       themes: { dark: 'tokyo-night', light: 'solarized-light' },
     });
