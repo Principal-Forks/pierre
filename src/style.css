@@ -164,22 +164,17 @@ code {
   font-weight: 500;
 }
 
+[data-column-number] {
+  min-width: 32px;
+}
+
 [data-column-content],
 [data-column-number] {
   padding-inline: 8px;
 }
 
-[data-column-number] {
-  min-width: 32px;
-}
-
-[data-lol] {
-  display: inline-block;
-  line-height: 1lh;
-  min-height: 1lh;
-  background-color: rgba(255, 255, 0, 0.2);
-  white-space: pre-wrap;
-  word-break: break-all;
-  overflow-wrap: break-word;
-  min-width: 1ch;
+/* Fix for inline padding on content */
+[data-column-content] > span:first-of-type[data-annotation] {
+  margin-left: -8px;
+  padding-left: 8px;
 }

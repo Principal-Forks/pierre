@@ -4,7 +4,7 @@ import tsContent from './example_ts.txt?raw';
 import diffContent from './diff.patch?raw';
 import { createHighlighterCleanup } from '../utils/createHighlighterCleanup';
 import type { BundledLanguage } from 'shiki';
-import type { FileMetadata } from 'pierrejs';
+import type { DiffDecorationItem, FileMetadata } from 'pierrejs';
 
 export { mdContent, tsContent };
 
@@ -64,6 +64,49 @@ export const DIFF_CONTENT_FORMATS: Record<string, BundledLanguage | undefined> =
     tsx: 'tsx',
     css: 'css',
   };
+
+export const DIFF_DECORATIONS: Record<string, DiffDecorationItem[]> = {
+  'eslint.config.js': [
+    {
+      type: 'additions',
+      hunkIndex: 0,
+
+      start: 7,
+      end: 15,
+      properties: {
+        'data-annotation': '',
+      },
+    },
+  ],
+  'index.html': [
+    {
+      type: 'additions',
+      hunkIndex: 0,
+      start: {
+        line: 5,
+        character: 0,
+      },
+      end: {
+        line: 5,
+        character: -1,
+      },
+      properties: {
+        'data-annotation': '',
+      },
+    },
+  ],
+  'src/SharedHighlighter.ts': [
+    {
+      type: 'deletions',
+      hunkIndex: 0,
+      start: 40,
+      end: 300,
+      properties: {
+        'data-annotation': '',
+      },
+    },
+  ],
+};
 
 export function getFiletypeFromMetadata(file: FileMetadata) {
   return DIFF_CONTENT_FORMATS[file.name.match(/\.([^.]+)$/)?.[1] || ''];

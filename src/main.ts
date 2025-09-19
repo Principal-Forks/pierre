@@ -3,6 +3,7 @@ import './style.css';
 import {
   CodeConfigs,
   DIFF_CONTENT,
+  DIFF_DECORATIONS,
   getFiletypeFromMetadata,
   toggleTheme,
 } from './test_files/';
@@ -37,6 +38,7 @@ let parsedPatch: ParsedPatch | undefined;
 function handlePreloadDiff() {
   if (parsedPatch != null || !isHighlighterNull()) return;
   parsedPatch = parsePatchContent(DIFF_CONTENT);
+  console.log('Parsed File:', parsedPatch);
   const langs = new Set<BundledLanguage>();
   for (const file of parsedPatch.files) {
     const lang = getFiletypeFromMetadata(file);
@@ -62,6 +64,7 @@ function renderDiff() {
   container.dataset.diff = '';
   parsedPatch = parsedPatch ?? parsePatchContent(DIFF_CONTENT);
   for (const file of parsedPatch.files) {
+    const decorations = DIFF_DECORATIONS[file.name];
     const pre = document.createElement('pre');
     pre.dataset.theme = 'dark';
     container.appendChild(pre);
@@ -69,7 +72,7 @@ function renderDiff() {
       lang: getFiletypeFromMetadata(file),
       themes: { dark: 'tokyo-night', light: 'solarized-light' },
     });
-    instance.setup(file, pre);
+    instance.setup(file, pre, decorations);
   }
 }
 

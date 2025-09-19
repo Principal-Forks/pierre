@@ -15,6 +15,12 @@ import type { BundledLanguage, BundledTheme } from 'shiki';
 import { getSharedHighlighter } from './SharedHighlighter';
 import type { FileMetadata, Hunk, HunkTypes, LinesHunk } from './types';
 
+export interface DiffDecorationItem extends DecorationItem {
+  type: 'additions' | 'deletions';
+  // Kinda hate this API for now... need to think about it more...
+  hunkIndex: number;
+}
+
 interface CodeToHastBase {
   lang: BundledLanguage;
   defaultColor?: CodeOptionsMultipleThemes['defaultColor'];
@@ -49,6 +55,8 @@ interface RenderHunkProps {
   codeDeletions: HTMLElement;
   codeAdditions: HTMLElement;
   transformer: ShikiTransformer;
+  deletionDecorations: DiffDecorationItem[] | undefined;
+  additionDecorations: DiffDecorationItem[] | undefined;
 }
 
 interface SharedRenderState {
@@ -90,10 +98,16 @@ export class DiffRenderer {
     return this.highlighter;
   }
 
-  private queuedSetupArgs: [FileMetadata, HTMLPreElement] | undefined;
-  async setup(_source: FileMetadata, _wrapper: HTMLPreElement) {
+  private queuedSetupArgs:
+    | [FileMetadata, HTMLPreElement, DiffDecorationItem[] | undefined]
+    | undefined;
+  async setup(
+    _source: FileMetadata,
+    _wrapper: HTMLPreElement,
+    _decorations?: DiffDecorationItem[]
+  ) {
     const isSettingUp = this.queuedSetupArgs != null;
-    this.queuedSetupArgs = [_source, _wrapper];
+    this.queuedSetupArgs = [_source, _wrapper, _decorations];
     if (isSettingUp) {
       // TODO(amadeus): Make it so that this function can be properly
       // awaitable, maybe?
@@ -103,15 +117,16 @@ export class DiffRenderer {
       this.highlighter = await this.initializeHighlighter();
     }
 
-    const [source, wrapper] = this.queuedSetupArgs;
+    const [source, wrapper, decorations] = this.queuedSetupArgs;
     this.queuedSetupArgs = undefined;
-    this.setupDiff(wrapper, source, this.highlighter);
+    this.setupDiff(wrapper, source, this.highlighter, decorations);
   }
 
   setupDiff(
     wrapper: HTMLPreElement,
     diff: FileMetadata,
-    highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>
+    highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>,
+    decorations?: DiffDecorationItem[]
   ) {
     const { themes, theme } = this.options;
     const split = diff.type === 'changed' || diff.type === 'renamed-changed';
@@ -133,13 +148,26 @@ export class DiffRenderer {
       element.textContent = `${diff.type.toUpperCase()}: ${diff.prevName != null ? `${diff.prevName} -> ` : ''}${diff.name}`;
     }
     this.pre.parentNode?.insertBefore(element, this.pre);
+    let hunkIndex = 0;
     let hasRenderedHunk = false;
+    const decorationSet = new Set(decorations);
     for (const hunk of diff.hunks) {
       if (!hasRenderedHunk) {
         hasRenderedHunk = true;
       } else {
         codeAdditions.appendChild(createHunkSeparator());
         codeDeletions.appendChild(createHunkSeparator());
+      }
+      const additionDecorations: DiffDecorationItem[] = [];
+      const deletionDecorations: DiffDecorationItem[] = [];
+      for (const decoration of decorationSet) {
+        if (decoration.hunkIndex !== hunkIndex) continue;
+        if (decoration.type === 'additions') {
+          additionDecorations.push(decoration);
+        } else {
+          deletionDecorations.push(decoration);
+        }
+        decorationSet.delete(decoration);
       }
       this.renderHunk({
         hunk,
@@ -148,7 +176,12 @@ export class DiffRenderer {
         codeAdditions,
         codeDeletions,
         transformer,
+        additionDecorations:
+          additionDecorations.length > 0 ? additionDecorations : undefined,
+        deletionDecorations:
+          deletionDecorations.length > 0 ? deletionDecorations : undefined,
       });
+      hunkIndex++;
     }
     if (codeDeletions.childNodes.length > 0) {
       this.pre.appendChild(codeDeletions);
@@ -162,10 +195,6 @@ export class DiffRenderer {
     transformer: ShikiTransformer,
     decorations?: DecorationItem[]
   ): CodeToHastTheme | CodeToHastThemes {
-    // REFERENCE CODE
-    // decorations: [
-    //   { start: 4, end: 105, properties: { 'data-lol': 'wot' } },
-    // ],
     if ('theme' in this.options && this.options.theme != null) {
       return {
         theme: this.options.theme,
@@ -195,6 +224,8 @@ export class DiffRenderer {
     codeAdditions,
     codeDeletions,
     transformer,
+    additionDecorations,
+    deletionDecorations,
   }: RenderHunkProps) {
     let lineIndex = 0;
     let opposingLines = hunk.additionLines;
@@ -232,7 +263,7 @@ export class DiffRenderer {
         .replace(/\n$/, '');
       const nodes = highlighter.codeToHast(
         deletions,
-        this.createHastOptions(transformer)
+        this.createHastOptions(transformer, deletionDecorations)
       );
       codeDeletions.insertAdjacentHTML(
         'beforeend',
@@ -252,7 +283,7 @@ export class DiffRenderer {
       state.startingLine = hunk.additionStart - 1;
       const nodes = highlighter.codeToHast(
         additions,
-        this.createHastOptions(transformer)
+        this.createHastOptions(transformer, additionDecorations)
       );
       codeAdditions.insertAdjacentHTML(
         'beforeend',
@@ -303,17 +334,10 @@ function convertLine(
   line: number,
   state: SharedRenderState
 ): ElementContent {
-  // We want to conver the default node for a line into a div and we don't want
-  // to include any shiki baggage by default, so we just re-create it to be
-  // safe
-  node = {
-    type: 'element',
-    tagName: 'div',
-    properties: {
-      ['data-column-content']: '',
-    },
-    children: node.children,
-  };
+  // We need to convert the current line to a div but keep all the decorations
+  // that may be applied
+  node.tagName = 'div';
+  node.properties['data-column-content'] = '';
   // NOTE(amadeus): We need to push newline characters into empty rows or else
   // copy/pasta will have issues
   if (node.children.length === 0) {
@@ -379,6 +403,11 @@ function createTransformerWithState(): {
   return {
     state,
     transformer: {
+      line(hast) {
+        // Remove the default class
+        delete hast.properties.class;
+        return hast;
+      },
       pre(pre) {
         // NOTE(amadeus): This kinda sucks -- basically we can't apply our
         // line node changes until AFTER decorations have been applied

@@ -26,7 +26,7 @@
     var(--pjs-bg) 85%,
     rgb(0, 255, 0)
   );
-
+  --pjs-bg-annotation: color-mix(in srgb, var(--pjs-bg) 75%, rgb(255, 255, 0));
   --pjs-code-grid: minmax(min-content, max-content) 1fr;
 
   background-color: var(--pjs-bg);
@@ -140,7 +140,6 @@
   text-align: right;
   position: sticky;
   left: 0;
-  min-width: 1ch;
   user-select: none;
   background-color: var(--pjs-bg);
   color: var(--pjs-fg-number);
@@ -162,4 +161,12 @@
 [data-deletions] [data-line-type='change'],
 [data-deletions] [data-line-type='change'] [data-column-number] {
   background-color: var(--pjs-bg-deletions);
+}
+
+[data-annotation] {
+  display: inline-block;
+  background-color: var(--pjs-bg-annotation);
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
