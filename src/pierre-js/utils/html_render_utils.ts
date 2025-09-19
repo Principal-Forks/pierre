@@ -43,6 +43,8 @@ export function createRow(line: number) {
 interface SetupWrapperBase {
   pre: HTMLPreElement;
   highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
+  split?: boolean;
+  wrap?: boolean;
 }
 
 interface SetupWrapperTheme extends ThemeVariant, SetupWrapperBase {}
@@ -51,21 +53,46 @@ interface SetupWrapperThemes extends ThemesVariant, SetupWrapperBase {}
 
 type SetupWrapperNodesProps = SetupWrapperTheme | SetupWrapperThemes;
 
-export function setupWrapperNodes(props: SetupWrapperNodesProps) {
+export function setupPreNode(props: SetupWrapperNodesProps) {
   const { pre } = props;
   // Clean out container
   pre.innerHTML = '';
   pre.tabIndex = 0;
-  pre.dataset.pierrejs = '';
+  pre.dataset.pjs = '';
   setWrapperProps(props);
+  return pre;
+}
+
+interface CreateCodeNodeProps {
+  pre?: HTMLPreElement;
+  columnType?: 'additions' | 'deletions';
+}
+
+export function createCodeNode({ pre, columnType }: CreateCodeNodeProps) {
   const code = document.createElement('code');
   code.dataset.code = '';
-  pre.appendChild(code);
-  return { pre, code };
+  if (columnType != null) {
+    code.dataset[columnType] = '';
+  }
+  pre?.appendChild(code);
+  return code;
+}
+
+export function createHunkSeparator() {
+  const separator = document.createElement('div');
+  separator.dataset.separator = '';
+  return separator;
 }
 
 function setWrapperProps(
-  { pre, highlighter, theme, themes }: SetupWrapperNodesProps,
+  {
+    pre,
+    highlighter,
+    theme,
+    themes,
+    split = false,
+    wrap = false,
+  }: SetupWrapperNodesProps,
   prefix?: string
 ) {
   let styles = '';
@@ -73,8 +100,8 @@ function setWrapperProps(
     const themeData = highlighter.getTheme(theme);
     styles += `color:${themeData.fg};`;
     styles += `background-color:${themeData.bg};`;
-    styles += `${formatCSSVariablePrefix(prefix)}-fg:${themeData.fg};`;
-    styles += `${formatCSSVariablePrefix(prefix)}-bg:${themeData.bg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}fg:${themeData.fg};`;
+    styles += `${formatCSSVariablePrefix(prefix)}bg:${themeData.bg};`;
     pre.dataset.theme = themeData.type;
   } else {
     let themeData = highlighter.getTheme(themes.dark);
@@ -84,8 +111,9 @@ function setWrapperProps(
     themeData = highlighter.getTheme(themes.light);
     styles += `${formatCSSVariablePrefix(prefix)}light:${themeData.fg};`;
     styles += `${formatCSSVariablePrefix(prefix)}light-bg:${themeData.bg};`;
-    pre.dataset.themed = '';
   }
+  pre.dataset.type = split ? 'split' : 'file';
+  pre.dataset.overflow = wrap ? 'wrap' : 'scroll';
   pre.style = styles;
 }
 
