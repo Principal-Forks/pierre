@@ -5,8 +5,6 @@ export interface ThemesType {
   light: BundledTheme;
 }
 
-export type HunkTypes = 'context' | 'change';
-
 export type FileTypes =
   | 'changed'
   | 'renamed-pure'
@@ -20,18 +18,12 @@ export interface ParsedPatch {
 }
 
 export interface Hunk {
-  additionEnd: number;
-  additionLines: LinesHunk[];
+  additionCount: number;
   additionStart: number;
-  deletedEnd: number;
-  deletedLines: LinesHunk[];
+  deletedCount: number;
   deletedStart: number;
+  hunkContent: string | undefined;
   hunkContext: string | undefined;
-}
-
-export interface LinesHunk {
-  type: HunkTypes;
-  lines: string[];
 }
 
 export interface FileMetadata {
@@ -40,3 +32,5 @@ export interface FileMetadata {
   type: FileTypes;
   hunks: Hunk[];
 }
+
+export type HUNK_LINE_TYPE = 'context' | 'addition' | 'deletion';

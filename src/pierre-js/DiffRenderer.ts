@@ -15,7 +15,9 @@ import {
 } from './utils/html_render_utils';
 import type { BundledLanguage, BundledTheme } from 'shiki';
 import { getSharedHighlighter } from './SharedHighlighter';
-import type { FileMetadata, Hunk, HunkTypes, LinesHunk } from './types';
+import type { FileMetadata, Hunk, HUNK_LINE_TYPE } from './types';
+import { SPLIT_WITH_NEWLINES } from './constants';
+import { parseLineType } from './utils/parseLineType';
 
 export interface DiffDecorationItem extends DecorationItem {
   type: 'additions' | 'deletions';
@@ -27,6 +29,7 @@ interface CodeTokenOptionsBase {
   lang?: BundledLanguage;
   defaultColor?: CodeOptionsMultipleThemes['defaultColor'];
   preferWasmHighlighter?: boolean;
+  unified?: boolean;
 
   // FIXME(amadeus): Figure out how to incorporate these mb?
   onPreRender?(instance: DiffRenderer): unknown;
@@ -37,16 +40,22 @@ interface RenderHunkProps {
   hunk: Hunk;
   highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
   state: SharedRenderState;
-  codeDeletions: HTMLElement;
-  codeAdditions: HTMLElement;
   transformer: ShikiTransformer;
   deletionDecorations: DiffDecorationItem[] | undefined;
   additionDecorations: DiffDecorationItem[] | undefined;
+
+  codeAdditions: HTMLElement;
+  codeDeletions: HTMLElement;
+  codeUnified: HTMLElement;
+}
+
+interface LineInfo {
+  type: 'change-deletion' | 'change-addition' | 'context';
+  number: number;
 }
 
 interface SharedRenderState {
-  startingLine: number;
-  lineTypes: Record<number, HunkTypes>;
+  lineInfo: Record<number, LineInfo | undefined>;
   spans: Record<number, number | undefined>;
   decorations: DecorationItem[];
 }
@@ -73,9 +82,18 @@ export class DiffRenderer {
   highlighter: HighlighterGeneric<BundledLanguage, BundledTheme> | undefined;
   options: DiffRendererOptions;
   pre: HTMLPreElement | undefined;
+  diff: FileMetadata | undefined;
 
   constructor(options: DiffRendererOptions) {
     this.options = options;
+  }
+
+  setOptions(options: DiffRendererOptions) {
+    this.options = options;
+    if (this.pre == null || this.diff == null) {
+      return;
+    }
+    this.render(this.diff, this.pre);
   }
 
   private async initializeHighlighter() {
@@ -83,16 +101,17 @@ export class DiffRenderer {
     return this.highlighter;
   }
 
-  private queuedSetupArgs:
+  private queuedRenderArgs:
     | [FileMetadata, HTMLPreElement, DiffDecorationItem[] | undefined]
     | undefined;
-  async setup(
-    _source: FileMetadata,
+
+  async render(
+    _diff: FileMetadata,
     _wrapper: HTMLPreElement,
     _decorations?: DiffDecorationItem[]
   ) {
-    const isSettingUp = this.queuedSetupArgs != null;
-    this.queuedSetupArgs = [_source, _wrapper, _decorations];
+    const isSettingUp = this.queuedRenderArgs != null;
+    this.queuedRenderArgs = [_diff, _wrapper, _decorations];
     if (isSettingUp) {
       // TODO(amadeus): Make it so that this function can be properly
       // awaitable, maybe?
@@ -102,46 +121,44 @@ export class DiffRenderer {
       this.highlighter = await this.initializeHighlighter();
     }
 
-    const [source, wrapper, decorations] = this.queuedSetupArgs;
-    this.queuedSetupArgs = undefined;
-    this.setupDiff(wrapper, source, this.highlighter, decorations);
+    const [source, wrapper, decorations] = this.queuedRenderArgs;
+    this.queuedRenderArgs = undefined;
+    this.renderDiff(wrapper, source, this.highlighter, decorations);
   }
 
-  private setupDiff(
+  private renderDiff(
     wrapper: HTMLPreElement,
     diff: FileMetadata,
     highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>,
     decorations?: DiffDecorationItem[]
   ) {
-    const { themes, theme } = this.options;
-    const split = diff.type === 'changed' || diff.type === 'renamed-changed';
+    const { themes, theme, unified = false } = this.options;
+    const split =
+      unified === true
+        ? false
+        : diff.type === 'changed' || diff.type === 'renamed-changed';
     const pre = setupPreNode(
       themes != null
         ? { pre: wrapper, themes, highlighter, split }
         : { pre: wrapper, theme, highlighter, split }
     );
 
+    this.diff = diff;
     this.pre = pre;
     const codeAdditions = createCodeNode({ columnType: 'additions' });
     const codeDeletions = createCodeNode({ columnType: 'deletions' });
+    const codeUnified = createCodeNode({ columnType: 'unified' });
     const { state, transformer } = createTransformerWithState();
-    const element = document.createElement('div');
-    element.dataset.fileInfo = '';
-    if (diff.hunks.length === 0) {
-      element.textContent = `RENAME ONLY: ${diff.prevName} -> ${diff.name}`;
-    } else {
-      element.textContent = `${diff.type.toUpperCase()}: ${diff.prevName != null ? `${diff.prevName} -> ` : ''}${diff.name}`;
-    }
-    this.pre.parentNode?.insertBefore(element, this.pre);
     let hunkIndex = 0;
-    let hasRenderedHunk = false;
     const decorationSet = new Set(decorations);
     for (const hunk of diff.hunks) {
-      if (!hasRenderedHunk) {
-        hasRenderedHunk = true;
-      } else {
-        codeAdditions.appendChild(createHunkSeparator());
-        codeDeletions.appendChild(createHunkSeparator());
+      if (hunkIndex > 0) {
+        if (unified) {
+          codeUnified.appendChild(createHunkSeparator());
+        } else {
+          codeAdditions.appendChild(createHunkSeparator());
+          codeDeletions.appendChild(createHunkSeparator());
+        }
       }
       const additionDecorations: DiffDecorationItem[] = [];
       const deletionDecorations: DiffDecorationItem[] = [];
@@ -154,25 +171,31 @@ export class DiffRenderer {
         }
         decorationSet.delete(decoration);
       }
-      this.renderHunk({
+      this.renderHunks({
         hunk,
         highlighter,
         state,
-        codeAdditions,
-        codeDeletions,
         transformer,
         additionDecorations:
           additionDecorations.length > 0 ? additionDecorations : undefined,
         deletionDecorations:
           deletionDecorations.length > 0 ? deletionDecorations : undefined,
+        codeAdditions,
+        codeDeletions,
+        codeUnified,
       });
       hunkIndex++;
     }
+
+    this.pre.innerHTML = '';
     if (codeDeletions.childNodes.length > 0) {
       this.pre.appendChild(codeDeletions);
     }
     if (codeAdditions.childNodes.length > 0) {
       this.pre.appendChild(codeAdditions);
+    }
+    if (codeUnified.childNodes.length > 0) {
+      this.pre.appendChild(codeUnified);
     }
   }
 
@@ -204,52 +227,152 @@ export class DiffRenderer {
     throw new Error();
   }
 
-  private renderHunk({
+  private renderHunks({
     hunk,
     highlighter,
     state,
-    codeAdditions,
-    codeDeletions,
     transformer,
     additionDecorations,
     deletionDecorations,
+    codeAdditions,
+    codeDeletions,
+    codeUnified,
   }: RenderHunkProps) {
-    let lineIndex = 0;
-    let opposingLines = hunk.additionLines;
-    const processLines = (linesHunk: LinesHunk, linesHunkIndex: number) => {
-      // Figure out if the opposite group of lines is taller than our current
-      // one, if so we'll have to add a spanner node to fill the space
-      const oppositeHunk = opposingLines[linesHunkIndex];
+    if (hunk.hunkContent == null) return;
+    const { unified = false } = this.options;
+
+    const additionLineInfo: Record<number, LineInfo | undefined> = {};
+    const additionSpans: Record<number, number> = {};
+    let additionLineIndex = 1;
+    let additionLineNumber = hunk.additionStart;
+    let additionContent: string | undefined;
+    let additionGroupSize = 0;
+
+    const deletionLineInfo: Record<number, LineInfo | undefined> = {};
+    const deletionSpans: Record<number, number> = {};
+    let deletionLineIndex = 1;
+    let deletionLineNumber = hunk.deletedStart;
+    let deletionGroupSize = 0;
+    let deletionContent: string | undefined;
+
+    const unifiedInfo: Record<number, LineInfo | undefined> = {};
+    let unifiedContent: string | undefined;
+    let unifiedLineIndex = 1;
+
+    function createSpanIfNecessary() {
       if (
-        oppositeHunk != null &&
-        oppositeHunk.lines.length > linesHunk.lines.length
+        !unified &&
+        lastType !== 'context' &&
+        lastType != null &&
+        additionGroupSize !== deletionGroupSize
       ) {
-        state.spans[lineIndex + linesHunk.lines.length] =
-          oppositeHunk.lines.length - linesHunk.lines.length;
+        if (additionGroupSize > deletionGroupSize) {
+          deletionSpans[deletionLineIndex - 1] =
+            additionGroupSize - deletionGroupSize;
+        } else if (deletionGroupSize > additionGroupSize) {
+          additionSpans[additionLineIndex - 1] =
+            deletionGroupSize - additionGroupSize;
+        }
       }
-      // Get a mapping of the line type (change or context) and convert into a
-      // string
-      let processedLines = '';
-      let index = lineIndex;
-      for (const line of linesHunk.lines) {
-        state.lineTypes[index + 1] = linesHunk.type;
-        processedLines += line;
-        index++;
+    }
+
+    let lastType: HUNK_LINE_TYPE | undefined;
+    for (const rawLine of hunk.hunkContent.split(SPLIT_WITH_NEWLINES)) {
+      const { line, type } = parseLineType(rawLine);
+      if (type === 'context') {
+        createSpanIfNecessary();
       }
-      lineIndex += linesHunk.lines.length;
-      return processedLines;
-    };
-    if (hunk.deletedLines.length > 0) {
-      state.startingLine = hunk.deletedStart - 1;
-      state.lineTypes = {};
+      if (type === 'context') {
+        additionGroupSize = 0;
+        deletionGroupSize = 0;
+        if (unified) {
+          unifiedContent = (unifiedContent ?? '') + line;
+          unifiedInfo[unifiedLineIndex] = {
+            type: 'context',
+            number: additionLineNumber,
+          };
+          unifiedLineIndex++;
+        } else {
+          additionContent = (additionContent ?? '') + line;
+          deletionContent = (deletionContent ?? '') + line;
+          additionLineInfo[additionLineIndex] = {
+            type: 'context',
+            number: additionLineNumber,
+          };
+          deletionLineInfo[deletionLineIndex] = {
+            type: 'context',
+            number: deletionLineNumber,
+          };
+          additionLineIndex++;
+          deletionLineIndex++;
+        }
+
+        additionLineNumber++;
+        deletionLineNumber++;
+      } else if (type === 'deletion') {
+        if (unified) {
+          unifiedContent = (unifiedContent ?? '') + line;
+          unifiedInfo[unifiedLineIndex] = {
+            type: 'change-deletion',
+            number: deletionLineNumber,
+          };
+          unifiedLineIndex++;
+        } else {
+          deletionContent = (deletionContent ?? '') + line;
+          deletionLineInfo[deletionLineIndex] = {
+            type: 'change-deletion',
+            number: deletionLineNumber,
+          };
+          deletionGroupSize++;
+          deletionLineIndex++;
+        }
+        deletionLineNumber++;
+      } else if (type === 'addition') {
+        if (unified) {
+          unifiedContent = (unifiedContent ?? '') + line;
+          unifiedInfo[unifiedLineIndex] = {
+            type: 'change-addition',
+            number: additionLineNumber,
+          };
+          unifiedLineIndex++;
+        } else {
+          additionContent = (additionContent ?? '') + line;
+          additionLineInfo[additionLineIndex] = {
+            type: 'change-addition',
+            number: additionLineNumber,
+          };
+          additionGroupSize++;
+          additionLineIndex++;
+        }
+        additionLineNumber++;
+      }
+
+      lastType = type;
+    }
+    createSpanIfNecessary();
+
+    if (unifiedContent != null) {
+      // Remove trailing blank line
+      unifiedContent = unifiedContent.replace(/\n$/, '');
       state.spans = {};
-      lineIndex = 0;
-      const deletions = hunk.deletedLines
-        .map(processLines)
-        .join('')
-        .replace(/\n$/, '');
+      state.lineInfo = unifiedInfo;
       const nodes = highlighter.codeToHast(
-        deletions,
+        unifiedContent,
+        this.createHastOptions(transformer, deletionDecorations)
+      );
+      codeUnified.insertAdjacentHTML(
+        'beforeend',
+        toHtml(this.getNodesToRender(nodes))
+      );
+    }
+
+    if (deletionContent != null) {
+      // Remove trailing blank line
+      deletionContent = deletionContent.replace(/\n$/, '');
+      state.spans = deletionSpans;
+      state.lineInfo = deletionLineInfo;
+      const nodes = highlighter.codeToHast(
+        deletionContent,
         this.createHastOptions(transformer, deletionDecorations)
       );
       codeDeletions.insertAdjacentHTML(
@@ -258,18 +381,13 @@ export class DiffRenderer {
       );
     }
 
-    if (hunk.additionLines.length > 0) {
-      opposingLines = hunk.deletedLines;
-      state.lineTypes = {};
-      state.spans = {};
-      lineIndex = 0;
-      const additions = hunk.additionLines
-        .map(processLines)
-        .join('')
-        .replace(/\n$/, '');
-      state.startingLine = hunk.additionStart - 1;
+    if (additionContent != null) {
+      // Remove trailing blank line
+      additionContent = additionContent.replace(/\n$/, '');
+      state.spans = additionSpans;
+      state.lineInfo = additionLineInfo;
       const nodes = highlighter.codeToHast(
-        additions,
+        additionContent,
         this.createHastOptions(transformer, additionDecorations)
       );
       codeAdditions.insertAdjacentHTML(
@@ -331,20 +449,23 @@ function convertLine(
     node.children.push({ type: 'text', value: '\n' });
   }
   const children = [node];
-  const lineNr = state.startingLine + line;
+  const lineInfo = state.lineInfo[line];
+  if (lineInfo == null) {
+    throw new Error(`convertLine: line ${line}, contains no state.lineInfo`);
+  }
   // NOTE(amadeus): This should probably be based on a setting
   children.unshift({
     tagName: 'div',
     type: 'element',
     properties: { 'data-column-number': '' },
-    children: [{ type: 'text', value: `${lineNr}` }],
+    children: [{ type: 'text', value: `${lineInfo.number}` }],
   });
   return {
     tagName: 'div',
     type: 'element',
     properties: {
-      ['data-line']: `${lineNr}`,
-      ['data-line-type']: state.lineTypes[line],
+      ['data-line']: `${lineInfo.number}`,
+      ['data-line-type']: lineInfo.type,
     },
     children,
   };
@@ -383,8 +504,7 @@ function createTransformerWithState(): {
 } {
   const state: SharedRenderState = {
     spans: {},
-    startingLine: 0,
-    lineTypes: {},
+    lineInfo: {},
     decorations: [],
   };
   return {
