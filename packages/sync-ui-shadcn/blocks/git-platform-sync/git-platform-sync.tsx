@@ -1,21 +1,50 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { Field, FieldLabel } from '@/components/ui/field';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { ChevronDown } from 'lucide-react';
+import { BookOpen, ChevronDown } from 'lucide-react';
+import { useCallback, useMemo, useState } from 'react';
+
+import { ComboBox } from './combobox';
+
+// TODO: determine if this is the canonical way to import other components inside of a block
+
+type Step = 'welcome' | 'sync';
+
+type RepositoryData = {
+  /**
+   * @description The owner of the repository, also referred to as the 'scope' - usually
+   * the username of the user or an organization they belong to.
+   */
+  owner?: string;
+  /**
+   * @description The name of the repository, this is a 'slug' style name.
+   */
+  name?: string;
+  /**
+   * @description The branch of the repository, this is the branch that will be used to sync
+   */
+  branch?: string;
+};
 
 const GitHubIcon = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn('h-full w-auto text-foreground', className)}
+    className={cn('h-full w-auto', className)}
     {...props}
   >
     <path
@@ -25,6 +54,12 @@ const GitHubIcon = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export type GitPlatformSyncStatus =
+  | 'disconnected'
+  | 'connected'
+  | 'connected-syncing'
+  | 'connected-warning';
+
 /**
  * @description Platforms that code.storage supports
  */
@@ -32,24 +67,87 @@ export type SupportedGitPlatform = 'github';
 export type GitPlatformSyncProps = React.ComponentProps<typeof Popover> & {
   /**
    * @default ['github']
-   * @description List of supported platforms that you want to offer to the user
+   * @description List of supported platforms that you want to offer to the user. We recommend
+   * not setting this until we support more platforms.
    */
   platforms?: SupportedGitPlatform[];
+
   /**
-   * @default 'default'
-   * @description Variant display of the button that opens the sync popover
+   * @default 'icon-only'
+   * @description Variant display of the button that opens the sync popover. The
+   * `icon-grow` variant will appear as the `icon` variant until hovered or focused,
+   * and then grow to appear as the `full` variant.
    */
-  variant?: 'default' | 'icon-only';
+  variant?: 'icon-only' | 'icon-grow' | 'full';
+
   /**
    * @default true
    * @description Whether to show the sync indicator in the button, e.g. the little colored dot
    */
   showSyncIndicator?: boolean;
+
   /**
    * @default 'end'
    * @description The alignment of the popover content
    */
   align?: React.ComponentProps<typeof PopoverContent>['align'];
+
+  /**
+   * @default 'auto'
+   * @description This controls the status dot that appears in the button. If `auto` is set, then
+   * the component will determine either `disconnected` or `connected`. However, an implementor may
+   * choose to override this as `connected-syncing` or `connected-warning`. Note that the component
+   * will not verify that the status is valid, it will faithfully render the status you provide.
+   */
+  status?: 'auto' | GitPlatformSyncStatus;
+
+  /**
+   * @description Options for what features to offer the user in the resository selection
+   */
+  repositoryOptions?: {
+    /**
+     * @default undefined
+     * @description This directly sets the name of the repository that will be created. Setting this
+     * will take precedence over the `initialName` option. Users will not be able to change from this
+     * name.
+     */
+    name?: string;
+    /**
+     * @default undefined
+     * @description If you'd like to suggest a name for the repository, but allow the user to customize it,
+     * this is the initial value of the repository name field. This will be ignored if the `name` option is
+     * set.
+     */
+    initialName?: string;
+    /**
+     * @default 'main'
+     * @description The branch that will be used to sync within the repository. `main` is used if this is not
+     * provided.
+     */
+    defaultBranch?: string;
+  };
+
+  /**
+   * @description Callback when a user successfully creates a sync repository.
+   */
+  onRepoCreated?: (repoData: RepositoryData) => void;
+
+  /**
+   *
+   * @description Callback when the user clicks the 'Help me get started' button. If this callback is
+   * not provided, the 'Help me get started' button will not be shown.
+   */
+  onHelpAction?: () => void;
+
+  /**
+   * @description Callback when the popover is opened.
+   */
+  onOpen?: () => void;
+  /**
+   * @description Callback when the popover is closed.
+   */
+  onClose?: () => void;
+
   /**
    * @deprecated Internal use only, not guaranteed to be supported in the future
    * @description The container to render the popover portal in, only used for docs. This requires
@@ -63,16 +161,43 @@ export type GitPlatformSyncProps = React.ComponentProps<typeof Popover> & {
 export function GitPlatformSync({
   // currently this is unused since we only support GitHub, but we'll keep it for future use
   platforms = ['github'],
-  variant = 'default',
+  variant = 'icon-only',
   align = 'end',
+  status: statusProp = 'auto',
+  onHelpAction,
+  onOpen,
+  onClose,
   __container,
   ...props
 }: GitPlatformSyncProps) {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+
+  const status = useMemo(() => {
+    if (statusProp === 'auto') {
+      // TODO: when we can determine connected vs disconnected, we should update it here
+      return 'disconnected';
+    }
+    return statusProp;
+  }, [statusProp]);
+
   // We want to make sure the container internal stuff doesn't blow up anyone's types
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const containerProp: any = __container ? { container: __container } : {};
 
   let platformName: string | undefined;
+
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      setIsPopoverOpen(open);
+      if (open) {
+        onOpen?.();
+      } else {
+        onClose?.();
+      }
+    },
+    [onOpen, onClose]
+  );
 
   if (platforms.length === 0) {
     console.error('No platforms provided to GitPlatformSync');
@@ -86,42 +211,244 @@ export function GitPlatformSync({
     return null;
   }
 
+  const labelText = `Sync to ${platformName}`;
+
+  // If we don't have any label inside the button we should set an aria-label
+  // that describes what that button does.
+  const buttonAriaLabelProp =
+    variant === 'icon-only'
+      ? {
+          'aria-label': labelText,
+        }
+      : {};
+
+  // TODO: fix full button, and disable tooltip on open popover
   return (
-    <Popover {...props}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className="group flex justify-between items-center gap-2 text-foreground"
-        >
-          {variant === 'icon-only' ? (
-            <GitHubIcon />
-          ) : (
-            <>
-              <GitHubIcon /> Sync to {platformName}
-              <ChevronDown className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
-            </>
-          )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-96" align={align} {...containerProp}>
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <h4 className="font-normal leading-none">Connect to GitHub</h4>
-            <p className="text-sm text-muted-foreground">
-              Sync your changes to GitHub to backup your code at every snapshot
-              by installing our app on your personal account or organization.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3">
-            <Button size="lg" className="w-full">
-              Install GitHub App
+    <Popover open={isPopoverOpen} onOpenChange={handleOpenChange} {...props}>
+      {variant === 'icon-only' ? (
+        <>
+          <Tooltip
+            open={isPopoverOpen ? false : isTooltipOpen}
+            onOpenChange={setIsTooltipOpen}
+            delayDuration={800}
+          >
+            <TooltipTrigger asChild>
+              <PopoverTrigger asChild>
+                <BaseSyncButton {...buttonAriaLabelProp} status={status} />
+              </PopoverTrigger>
+            </TooltipTrigger>
+            <TooltipContent {...containerProp}>{labelText}</TooltipContent>
+          </Tooltip>
+          <PopoverConductor
+            align={align}
+            __container={__container}
+            onHelpAction={onHelpAction}
+          />
+        </>
+      ) : (
+        <>
+          <PopoverTrigger asChild>
+            <BaseSyncButton
+              {...buttonAriaLabelProp}
+              className="gap-0"
+              status={status}
+            >
+              <span
+                className={cn(
+                  'justify-between items-center gap-1.5 text-foreground transition-width delay-200 group-focus:delay-0 duration-150 ease-in-out overflow-hidden inline-flex select-none',
+                  variant === 'icon-grow' && !isPopoverOpen
+                    ? 'max-w-0 opacity-0 group-hover:opacity-100 group-hover:max-w-48 group-focus:opacity-100 group-focus:max-w-48 group-focus:pl-1.5 group-focus:-mr-0.5 group-hover:pl-1.5 group-hover:-mr-0.5'
+                    : 'max-w-48 pl-1.5 -mr-0.5 opacity-100'
+                )}
+              >
+                {labelText}
+                <ChevronDown className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground mt-0.25" />
+              </span>
+            </BaseSyncButton>
+          </PopoverTrigger>
+          <PopoverConductor
+            align={align}
+            __container={__container}
+            onHelpAction={onHelpAction}
+          />
+        </>
+      )}
+    </Popover>
+  );
+}
+
+function LilDotGuy({ status }: { status?: GitPlatformSyncStatus }) {
+  if (!status || status === 'disconnected') {
+    return null;
+  }
+  return (
+    <div
+      className={cn(
+        'absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full border border-background',
+        status === 'connected' && 'bg-green-500',
+        status === 'connected-syncing' && 'bg-yellow-500',
+        status === 'connected-warning' && 'bg-red-500'
+      )}
+    />
+  );
+}
+
+function BaseSyncButton({
+  children,
+  className,
+  status,
+  ...props
+}: React.ComponentProps<typeof Button> & {
+  status?: GitPlatformSyncStatus;
+}) {
+  return (
+    <Button
+      variant="outline"
+      className={cn(
+        'group flex justify-between items-center gap-2 text-foreground px-2',
+        className
+      )}
+      {...props}
+    >
+      <div
+        className="relative flex justify-center items-center w-4 mx-0.25"
+        aria-hidden
+      >
+        <GitHubIcon />
+        <LilDotGuy status={status} />
+      </div>
+      {children}
+    </Button>
+  );
+}
+
+function PopoverConductor({
+  align,
+  __container,
+  onHelpAction,
+}: Pick<GitPlatformSyncProps, 'align' | '__container' | 'onHelpAction'>) {
+  const [step, setStep] = useState<Step>('welcome');
+
+  // We want to make sure the container internal stuff doesn't blow up anyone's types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const containerProp: any = __container ? { container: __container } : {};
+
+  return (
+    <PopoverContent className="w-96" align={align} {...containerProp}>
+      {step === 'welcome' ? (
+        <StepWelcome
+          onInstallApp={() => setStep('sync')}
+          onHelpAction={onHelpAction}
+        />
+      ) : null}
+      {step === 'sync' ? <StepSync __container={__container} /> : null}
+    </PopoverContent>
+  );
+}
+
+type StepWelcomeProps = {
+  onInstallApp?: () => void;
+  onHelpAction?: () => void;
+};
+
+function StepWelcome({ onInstallApp, onHelpAction }: StepWelcomeProps) {
+  return (
+    <>
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h4 className="font-normal leading-none">Connect to GitHub</h4>
+          <p className="text-sm text-muted-foreground">
+            Sync your changes to GitHub to backup your code at every snapshot by
+            installing our app on your personal account or organization.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3">
+          <Button onClick={onInstallApp} size="lg" className="w-full">
+            <GitHubIcon /> Install GitHub App
+          </Button>
+          {onHelpAction ? (
+            <Button
+              onClick={onHelpAction}
+              size="lg"
+              variant="secondary"
+              className="w-full"
+            >
+              <BookOpen /> Help me get started
             </Button>
-            <Button size="lg" variant="secondary" className="w-full">
-              Help me get started
-            </Button>
+          ) : null}
+        </div>
+      </div>
+    </>
+  );
+}
+
+type StepSyncProps = {
+  onOwnerChange?: (owner: string) => void;
+  onRepoChange?: (repo: string) => void;
+  onBranchChange?: (branch: string) => void;
+  /**
+   * @deprecated Internal use only, not guaranteed to be supported in the future
+   * @description The container to render the popover portal in, only used for docs. This requires
+   * modifying the shadcn Popover component to accept a container prop for the portal
+   */
+  __container?: React.ComponentProps<
+    typeof PopoverPrimitive.Portal
+  >['container'];
+};
+
+function StepSync({
+  // onOwnerChange,
+  // onRepoChange,
+  // onBranchChange,
+  __container,
+}: StepSyncProps) {
+  // We want to make sure the container internal stuff doesn't blow up anyone's types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const containerProp: any = __container ? { __container: __container } : {};
+
+  return (
+    <>
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h4 className="font-normal leading-none">Sync to GitHub</h4>
+          <p className="text-sm text-muted-foreground">
+            Create a new repository or choose an existing one to sync your
+            changes. We&apos;ll push changes with each new prompt you send.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-row gap-1">
+            <Field className="w-fit flex-shrink-0">
+              <FieldLabel htmlFor="github-owner">Owner</FieldLabel>
+              <ComboBox
+                id="github-owner"
+                {...containerProp}
+                initialValue={'pierredotco'}
+                options={[
+                  { value: 'slexaxton', label: 'SlexAxton' },
+                  { value: 'pierredotco', label: 'pierredotco' },
+                  { value: 'jquery', label: 'jQuery' },
+                ]}
+              />
+            </Field>
+            <Field className="flex-1">
+              <FieldLabel htmlFor="github-repo">Repository</FieldLabel>
+              <ComboBox
+                id="github-repo"
+                width="full"
+                {...containerProp}
+                initialValue={'gh-monorepo'}
+                options={[
+                  { value: 'yepnope', label: 'SlexAxton' },
+                  { value: 'jquery', label: 'jQuery' },
+                  { value: 'modernizr', label: 'modernizr' },
+                  { value: 'gh-monorepo', label: 'monorepo' },
+                ]}
+              />
+            </Field>
           </div>
         </div>
-      </PopoverContent>
-    </Popover>
+      </div>
+    </>
   );
 }

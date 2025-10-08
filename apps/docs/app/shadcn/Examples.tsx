@@ -1,68 +1,171 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { GitPlatformSync } from '@/registry/new-york/blocks/git-platform-sync/git-platform-sync';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
-import { useEffect, useRef, useState } from 'react';
+import { Lollipop, Menu } from 'lucide-react';
+import { Fragment } from 'react';
 
-const ExampleContainer = ({
+let cachedPortalContainers: { light: HTMLElement; dark: HTMLElement } | null =
+  null;
+function getPortalContainers() {
+  if (typeof document === 'undefined' || cachedPortalContainers) {
+    return cachedPortalContainers;
+  }
+  const lightContainer = document.getElementById('light-mode-portal-container');
+  const darkContainer = document.getElementById('dark-mode-portal-container');
+  if (!lightContainer || !darkContainer) {
+    throw new Error('Light and dark mode portal containers not found');
+  }
+  cachedPortalContainers = { light: lightContainer, dark: darkContainer };
+  return cachedPortalContainers;
+}
+
+function FakeTopBar({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<'div'>) {
+  return (
+    <div
+      className={cn(
+        'flex w-full gap-2 justify-end p-2 border-2 rounded-lg',
+        className
+      )}
+      {...props}
+    >
+      <div className="flex-1 flex justify-start items-center text-foreground">
+        <Lollipop />
+      </div>
+      {children}
+      <Button variant="outline" size="icon">
+        <Menu className="text-muted-foreground" />
+      </Button>
+    </div>
+  );
+}
+
+type ExamplePropsSingle = React.ComponentProps<typeof GitPlatformSync> & {
+  __label?: React.ReactNode;
+};
+
+const Example = ({
   className,
   title,
   id,
-  lightExample,
-  darkExample,
+  exampleProps,
+  code,
   ...props
 }: Omit<React.ComponentProps<'div'>, 'children'> & {
-  lightExample: React.ReactNode;
-  darkExample: React.ReactNode;
+  exampleProps: ExamplePropsSingle | Array<ExamplePropsSingle>;
+  code?: string;
 }) => {
+  const containers = getPortalContainers();
+
   return (
     <div id={id}>
       <h4 className="text-lg font-bold tracking-tight mb-2">{title}</h4>
       <div
         className={cn(
-          'flex flex-col md:flex-row justify-evenly border rounded-lg relative min-h-[180px] bg-background overflow-hidden',
+          'flex flex-col md:flex-row justify-evenly border rounded-t-lg relative min-h-[180px] bg-background overflow-hidden',
           className
         )}
         {...props}
       >
         <div className="w-full md:w-1/2 light">
-          <div className="bg-background flex justify-center items-center p-4 h-full">
-            {lightExample}
+          <div className="bg-background flex flex-col gap-2 justify-center items-center p-4 h-full min-h-[120px]">
+            {Array.isArray(exampleProps) ? (
+              exampleProps.map(({ __label, ...props }, index) => (
+                <Fragment key={index}>
+                  {__label ? (
+                    <div className="text-sm text-muted-foreground">
+                      {__label}
+                    </div>
+                  ) : null}
+                  <FakeTopBar>
+                    <GitPlatformSync
+                      {...props}
+                      __container={containers?.light}
+                    />
+                  </FakeTopBar>
+                </Fragment>
+              ))
+            ) : (
+              <FakeTopBar>
+                <GitPlatformSync
+                  {...exampleProps}
+                  __container={containers?.light}
+                />
+              </FakeTopBar>
+            )}
           </div>
         </div>
         <div className="w-full md:w-1/2 dark">
-          <div className="bg-background flex justify-center items-center p-4 h-full">
-            {darkExample}
+          <div className="bg-background flex flex-col gap-2 justify-center items-center p-4 h-full min-h-[120px]">
+            {Array.isArray(exampleProps) ? (
+              exampleProps.map(({ __label, ...props }, index) => (
+                <Fragment key={index}>
+                  {__label ? (
+                    <div className="text-sm text-muted-foreground">
+                      {__label}
+                    </div>
+                  ) : null}
+                  <FakeTopBar>
+                    <GitPlatformSync
+                      {...props}
+                      __container={containers?.dark}
+                    />
+                  </FakeTopBar>
+                </Fragment>
+              ))
+            ) : (
+              <FakeTopBar>
+                <GitPlatformSync
+                  {...exampleProps}
+                  __container={containers?.dark}
+                />
+              </FakeTopBar>
+            )}
           </div>
         </div>
       </div>
+      {code ? (
+        <CodeExampleContainer>
+          <DynamicCodeBlock
+            lang="tsx"
+            code={code}
+            codeblock={{
+              style: {
+                borderTopLeftRadius: '0 !important',
+                borderTopRightRadius: '0 !important',
+                borderTopWidth: '0 !important',
+                paddingTop: '18px !important',
+              },
+            }}
+          />
+        </CodeExampleContainer>
+      ) : null}
     </div>
   );
 };
 
+function CodeExampleContainer({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
+  return (
+    <div
+      className={cn(
+        //'flex flex-col gap-4 border rounded-lg p-4 min-h-[180px] relative bg-background',
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
 export function Examples() {
-  const lightModePortalContainerRef = useRef<HTMLElement>(null);
-  const darkModePortalContainerRef = useRef<HTMLElement>(null);
-  const [, setContainersReady] = useState(false);
-
-  // This ref stuff is stupid because Radix Popover takes an element
-  // instead of a react element ref, so refs won't cause a re-render
-  // as-per their correct behavior. There's probably a reason that radix
-  // wants an element since this is often outside of the react tree, but
-  // in our case this is just for examples so im gonna throw this here.
-  useEffect(() => {
-    lightModePortalContainerRef.current = document.getElementById(
-      'light-mode-portal-container'
-    );
-    darkModePortalContainerRef.current = document.getElementById(
-      'dark-mode-portal-container'
-    );
-
-    // Trigger re-render when containers are ready
-    setContainersReady(true);
-  }, []);
-
   return (
     <>
       <h2
@@ -81,22 +184,11 @@ export function Examples() {
         code={`npx shadcn@latest add @pierre/git-platform-sync`}
       />
 
-      <ExampleContainer
+      <Example
         title="Default usage"
         id="git-platform-sync--default-usage"
-        lightExample={
-          <GitPlatformSync __container={lightModePortalContainerRef.current} />
-        }
-        darkExample={
-          <GitPlatformSync __container={darkModePortalContainerRef.current} />
-        }
-      />
-
-      <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[300px] relative bg-background">
-        Import the component from your components alias
-        <DynamicCodeBlock
-          lang="tsx"
-          code={`import { GitPlatformSync } from '@/components/blocks/git-platform-sync';
+        exampleProps={{}}
+        code={`import { GitPlatformSync } from '@/components/blocks/git-platform-sync';
 
 function TopBar() {
   return (
@@ -104,40 +196,75 @@ function TopBar() {
   );
 }
 `}
-        />
-      </div>
-
-      <ExampleContainer
-        title="Icon only button"
-        id="git-platform-sync--button-variants"
-        lightExample={
-          <GitPlatformSync
-            variant="icon-only"
-            __container={lightModePortalContainerRef.current}
-          />
-        }
-        darkExample={
-          <GitPlatformSync
-            variant="icon-only"
-            __container={darkModePortalContainerRef.current}
-          />
-        }
       />
 
-      <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[300px] relative bg-background">
-        Import the component from your components alias
-        <DynamicCodeBlock
-          lang="tsx"
-          code={`import { GitPlatformSync } from '@/components/blocks/git-platform-sync';
+      <Example
+        title="Button variants"
+        id="git-platform-sync--button-variants"
+        exampleProps={[{}, { variant: 'icon-grow' }, { variant: 'full' }]}
+        code={`import { GitPlatformSync } from '@/components/blocks/git-platform-sync';
 
 function TopBar() {
   return (
-    <GitPlatformSync variant="icon-only" />
+    <>
+      <GitPlatformSync />
+      <GitPlatformSync variant="icon-grow" />
+      <GitPlatformSync variant="full" />
+    </>
   );
 }
 `}
-        />
-      </div>
+      />
+
+      <Example
+        title="Override status"
+        id="git-platform-sync--status"
+        exampleProps={[
+          { status: 'disconnected' },
+          { status: 'connected' },
+          { status: 'connected-syncing' },
+          { status: 'connected-warning' },
+        ]}
+        code={`import { GitPlatformSync } from '@/components/blocks/git-platform-sync';
+
+function TopBar() {
+  // By default we will use 'auto' which will show either
+  // nothing when disconnected or a green dot when connected
+  return (
+    <>
+      <GitPlatformSync status="disconnected" />
+      <GitPlatformSync status="connected" />
+      <GitPlatformSync status="connected-syncing" />
+      <GitPlatformSync status="connected-warning" />
+    </>
+  );
+}
+`}
+      />
+
+      <Example
+        title="Events"
+        id="git-platform-sync--events"
+        exampleProps={{
+          onHelpAction: () => {
+            console.log('help needed!');
+          },
+        }}
+        code={`import { GitPlatformSync } from '@/components/blocks/git-platform-sync';
+
+function TopBar() {
+  return (
+    <GitPlatformSync
+      // Adds a 'Help me get started' button that you can
+      // handle to describe the process to your users
+      onHelpAction={() => {
+        console.log('help needed!');
+      }}
+    />
+  );
+}
+`}
+      />
     </>
   );
 }
