@@ -19,7 +19,6 @@ import {
 import '@/styles/tokens.css';
 
 import IconSprite from './IconSprite';
-// import './home.css';
 import './css/index.css';
 import { SplitUnified } from './diff-examples/SplitUnified';
 
@@ -58,7 +57,7 @@ export default function Home() {
           your theme selection, including across color modes.
         </p>
 
-        <div className={styles.hstack}>
+        <div className="vstack md:hstack">
           <Button variant="active">
             <IconColorDark />
             GitHub Dark
@@ -94,7 +93,7 @@ export default function Home() {
           can even highlight inline changes—character or word based—and toggle
           line wrapping, hide numbers, and more.
         </p>
-        <div className="hstack">
+        <div className="vstack md:hstack">
           <ButtonGroup>
             <Button variant="active">
               <IconSymbolDiffstat />
@@ -137,20 +136,22 @@ export default function Home() {
           even font-feature-settings you may have set. Configure font options
           with your preferred CSS method globally or on a per-component basis.
         </p>
-        <div className="hstack">
-          <Button variant="active">
-            <IconType />
-            Geist Mono
-            <IconChevronSm />
-          </Button>
-          <Button variant="active">
-            12px
-            <IconChevronSm />
-          </Button>
-          <Button variant="active">
-            20px
-            <IconChevronSm />
-          </Button>
+        <div className="vstack md:hstack">
+          <div className="hstack">
+            <Button variant="active">
+              <IconType />
+              Geist Mono
+              <IconChevronSm />
+            </Button>
+            <Button variant="active">
+              12px
+              <IconChevronSm />
+            </Button>
+            <Button variant="active">
+              20px
+              <IconChevronSm />
+            </Button>
+          </div>
           <input placeholder="Font feature settings" />
         </div>
 
@@ -161,7 +162,7 @@ export default function Home() {
           separated—file wrapper, header, hunk, and more—and are all available
           in React or JavaScript versions.
         </p>
-        <div className="d-grid cols-2">
+        <div className="d-grid md:cols-2">
           <div className="codeblock" data-theme="dark" lang="React">
             <button>
               <IconCopyFill />
