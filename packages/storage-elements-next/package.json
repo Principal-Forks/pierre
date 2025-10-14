@@ -1,6 +1,6 @@
 {
   "name": "@pierre/storage-elements-next",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "tsc": "tsc --build",
@@ -8,11 +8,12 @@
   },
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "import": "./dist/index.ts",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
