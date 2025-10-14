@@ -438,7 +438,6 @@ function PopoverConductor({
 
   useEffect(() => {
     if (codeStorageRepo != null) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStep('manage');
     } else if (connectionStatus === 'installed') {
       setStep('create');
@@ -523,7 +522,6 @@ function StepManage({ codeStorageRepo, __container }: StepManageProps) {
         codeStorageRepo.repository.owner,
         owner
       );
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedOwnerId(owner?.id ?? null);
     }
   }, [owners, codeStorageRepo.repository.owner, getOwnerByName]);
@@ -648,7 +646,6 @@ function StepCreate({
   // to an uncontrolled combobox and compute the value in the single pass, but idk.
   useEffect(() => {
     if (owners.length > 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedOwnerId(owners[0]?.id ?? null);
     }
   }, [owners]);

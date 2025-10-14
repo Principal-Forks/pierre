@@ -47,10 +47,10 @@ export class CodeStorageRepo {
           name,
           // NOTE(amadeus): Given these types are `any`, not sure the safest way
           // to convert fix them...
-          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
+          // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
           defaultBranch: defaultBranch || 'main', // Optional, defaults to 'main'
         },
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
+        // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
         defaultBranch: defaultBranch || 'main', // Optional, defaults to 'main' for the Git Storage repo
       });
 
@@ -65,7 +65,7 @@ export class CodeStorageRepo {
         repository: {
           owner,
           name,
-          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-nullish-coalescing
+          // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
           defaultBranch: defaultBranch || 'main',
         },
       });
