@@ -5,11 +5,11 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/docs/:path*.mdx',
+        source: '/fumadocs/:path*.mdx',
         destination: '/llms.mdx/:path*',
       },
       {
-        source: '/docs/:path*.md',
+        source: '/fumadocs/:path*.md',
         destination: '/llms.mdx/:path*',
       },
     ];
