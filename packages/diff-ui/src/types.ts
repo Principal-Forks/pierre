@@ -50,7 +50,7 @@ export type FileTypes =
   | 'deleted';
 
 export interface ParsedPatch {
-  patchMetadata: string | undefined;
+  patchMetadata?: string;
   files: FileDiffMetadata[];
 }
 
@@ -61,6 +61,7 @@ export interface Hunk {
   deletedStart: number;
   hunkContent: string[] | undefined;
   hunkContext: string | undefined;
+  hunkSpecs: string;
 }
 
 export interface FileDiffMetadata {
@@ -69,11 +70,19 @@ export interface FileDiffMetadata {
   type: FileTypes;
   hunks: Hunk[];
   lines: number;
+  oldLines?: string[];
+  newLines?: string[];
 }
 
 export type SupportedLanguages = BundledLanguage | 'text';
 
-export type HUNK_LINE_TYPE = 'context' | 'addition' | 'deletion' | 'metadata';
+// Line types that we can parse from a patch file
+export type HunkLineType =
+  | 'context'
+  | 'expanded'
+  | 'addition'
+  | 'deletion'
+  | 'metadata';
 
 export type ThemeModes = 'system' | 'light' | 'dark';
 
@@ -92,6 +101,7 @@ export interface BaseRendererOptions extends BaseCodeProps {
   diffStyle?: 'unified' | 'split'; // split is default
   diffIndicators?: 'classic' | 'bars' | 'none'; // bars is default
   disableBackground?: boolean;
+  hunkSeparators?: 'simple' | 'metadata' | 'line-info'; // line-info is default
   // NOTE(amadeus): 'word-alt' attempts to join word regions that are separated
   // by a single character
   lineDiffType?: 'word-alt' | 'word' | 'char' | 'none'; // 'word-alt' is default
@@ -111,3 +121,46 @@ export type LineAnnotation<T = undefined> = {
   side: AnnotationSide;
   lineNumber: number;
 } & (T extends undefined ? { metadata?: undefined } : { metadata: T });
+
+export interface GapSpan {
+  type: 'gap';
+  rows: number;
+}
+
+export type LineSpans = GapSpan | AnnotationSpan;
+
+// Types of rendered lines in a rendered diff
+export type LineTypes =
+  | 'change-deletion'
+  | 'change-addition'
+  | 'context'
+  | 'context-expanded';
+
+export interface LineInfo {
+  type: LineTypes;
+  number: number;
+  diffLineIndex: number;
+  metadataContent?: string;
+  spans?: LineSpans[];
+}
+
+export interface SharedRenderState {
+  lineInfo: Record<number, LineInfo | undefined>;
+  decorations: DecorationItem[];
+  disableLineNumbers: boolean;
+}
+
+export interface AnnotationSpan {
+  type: 'annotation';
+  hunkIndex: number;
+  diffLineIndex: number;
+  annotations: string[];
+}
+
+export interface LineEventBaseProps {
+  type: 'line';
+  annotationSide: AnnotationSide;
+  lineType: LineTypes;
+  lineNumber: number;
+  lineElement: HTMLElement;
+}
