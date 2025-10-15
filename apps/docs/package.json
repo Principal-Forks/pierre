@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "next build --turbopack",
+    "build": "bun run elements-next:build && next build --turbopack",
     "dev": "next dev --turbopack",
     "prod": "next build --turbopack && next start",
+    "elements-next:build": "bun run --filter @pierre/storage-elements-next build",
     "registry:build": "shadcn build",
     "start": "next start",
     "tsc": "tsc --build"
