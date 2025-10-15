@@ -103,6 +103,7 @@ export default [
         ...config.rules,
         'jsx-a11y/alt-text': 'off',
         '@next/next/no-img-element': 'off',
+        'react-hooks/set-state-in-effect': 'off',
       },
     })),
 ];
