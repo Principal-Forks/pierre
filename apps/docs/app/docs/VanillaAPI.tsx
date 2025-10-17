@@ -286,7 +286,7 @@ const fileDiff: FileDiffMetadata = parseDiffFromFile(
 // Render hunks
 const result: HunksRenderResult | undefined = await renderer.render(fileDiff);
 // Depending on your diffStyle settings and depending the type of changes,
-// you'll get raw text html lines for each column type. If you're diffStyle is
+// you'll get raw text html lines for each column type. If your diffStyle is
 // 'unified', then additionsHTML and deletionsHTML will be undefined and
 // 'split' will be the inverse
 console.log(result?.additionsHTML);
@@ -342,7 +342,7 @@ for (const patch of patches) {
     const result: HunksRenderResult | undefined =
       await instance.render(fileDiff); // returns raw strings of html based on your settings
     // Depending on your diffStyle settings and depending the type of changes,
-    // you'll get raw text html lines for each column type. If you're diffStyle is
+    // you'll get raw text html lines for each column type. If your diffStyle is
     // 'unified', then additionsHTML and deletionsHTML will be undefined and
     // 'split' will be the inverse
     console.log(result?.additionsHTML);
