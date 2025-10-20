@@ -5,6 +5,18 @@ import { Header } from '@/components/ui/header';
 import '@pierre/precision-diffs/ssr';
 import { type PreloadedFileDiffResult } from '@pierre/precision-diffs/ssr';
 
+declare module 'react' {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'file-diff': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >;
+    }
+  }
+}
+
 export function SsrPage({
   preloadedFileDiff,
 }: {
