@@ -30,6 +30,7 @@ interface FileDiffProps<LAnnotation> {
   renderHeaderMetadata?(props: RenderHeaderMetadataProps): ReactNode;
   className?: string;
   style?: CSSProperties;
+  prerenderedHTML?: string;
 }
 
 export function FileDiff<LAnnotation = undefined>({
@@ -39,25 +40,36 @@ export function FileDiff<LAnnotation = undefined>({
   annotations,
   className,
   style,
+  prerenderedHTML,
   renderAnnotation,
   renderHeaderMetadata,
 }: FileDiffProps<LAnnotation>) {
-  'use no memo';
   const instanceRef = useRef<FileDiffUI<LAnnotation> | null>(null);
   const ref = useRef<HTMLElement>(null);
   // NOTE(amadeus): This is all a temporary hack until we can figure out proper
   // innerHTML shadow dom stuff
   useIsometricEffect(() => {
+    if (ref.current == null) return;
+    const firstRender = instanceRef.current == null;
     instanceRef.current ??= new FileDiffUI<LAnnotation>(options, true);
     const forceRender = !deepEqual(instanceRef.current.options, options);
     instanceRef.current.setOptions(options);
-    void instanceRef.current.render({
-      forceRender,
-      oldFile,
-      newFile,
-      fileContainer: ref.current ?? undefined,
-      lineAnnotations: annotations,
-    });
+    if (firstRender && prerenderedHTML != null) {
+      instanceRef.current.hydrate({
+        oldFile,
+        newFile,
+        fileContainer: ref.current,
+        lineAnnotations: annotations,
+      });
+    } else {
+      void instanceRef.current.render({
+        forceRender,
+        oldFile,
+        newFile,
+        fileContainer: ref.current,
+        lineAnnotations: annotations,
+      });
+    }
   });
   useIsometricEffect(
     () => () => {
@@ -67,18 +79,36 @@ export function FileDiff<LAnnotation = undefined>({
     []
   );
   const metadata = renderHeaderMetadata?.({ oldFile, newFile });
-  return (
-    <pjs-container ref={ref} className={className} style={style}>
+  const children = (
+    <>
       {metadata != null && <div slot={HEADER_METADATA_SLOT_ID}>{metadata}</div>}
       {renderAnnotation != null &&
-        annotations?.map((annotation) => (
-          <div
-            key={getLineAnnotationId(annotation)}
-            slot={getLineAnnotationId(annotation)}
-          >
+        annotations?.map((annotation, index) => (
+          <div key={index} slot={getLineAnnotationId(annotation)}>
             {renderAnnotation(annotation)}
           </div>
         ))}
-    </pjs-container>
+    </>
   );
+  return (
+    <file-diff ref={ref} className={className} style={style}>
+      {templateRender(children, prerenderedHTML)}
+    </file-diff>
+  );
+}
+
+function templateRender(children: ReactNode, __html?: string) {
+  if (typeof window === 'undefined' && __html != null) {
+    return (
+      <>
+        <template
+          // @ts-expect-error unclear how to fix this
+          shadowrootmode="open"
+          dangerouslySetInnerHTML={{ __html }}
+        />
+        {children}
+      </>
+    );
+  }
+  return <>{children}</>;
 }

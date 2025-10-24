@@ -15,25 +15,24 @@ export type PreloadFileDiffOptions<LAnnotation> = {
   newFile: FileContents;
   options?: DiffHunksRendererOptions;
   annotations?: DiffLineAnnotation<LAnnotation>[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  renderAnnotation?(annotations: DiffLineAnnotation<LAnnotation>): any;
-  className?: string;
-  style?: Record<string, string>;
 };
 
-export type PreloadedFileDiffResult = {
-  suppressHydrationWarning: boolean;
-  dangerouslySetInnerHTML: {
-    __html: string;
-  };
-};
+export interface PreloadedFileDiffResult<LAnnotation> {
+  oldFile: FileContents;
+  newFile: FileContents;
+  options?: DiffHunksRendererOptions;
+  annotations?: DiffLineAnnotation<LAnnotation>[];
+  prerenderedHTML: string;
+}
 
 export async function preloadFileDiff<LAnnotation>({
   oldFile,
   newFile,
   options,
   annotations,
-}: PreloadFileDiffOptions<LAnnotation>) {
+}: PreloadFileDiffOptions<LAnnotation>): Promise<
+  PreloadedFileDiffResult<LAnnotation>
+> {
   const fileDiff = parseDiffFromFile(oldFile, newFile);
   const diffHunksRenderer = new DiffHunksRenderer<LAnnotation>(options);
   const fileHeader = new FileHeaderRenderer(options);
@@ -69,14 +68,12 @@ export async function preloadFileDiff<LAnnotation>({
   }
   children.push(diffHunksRenderer.renderFullAST(hunkResult));
 
-  const __html = `<template shadowrootmode="open">
-${SVGSpriteSheet}
-${toHtml(children)}
-  </template>`;
-
   return {
-    suppressHydrationWarning: true,
-    dangerouslySetInnerHTML: { __html },
+    oldFile,
+    newFile,
+    options,
+    annotations,
+    prerenderedHTML: `${SVGSpriteSheet}${toHtml(children)}`,
   };
 }
 
@@ -420,6 +417,7 @@ code {
 
 [data-separator-content] {
   user-select: none;
+  fill: currentColor;
 }
 
 [data-separator='metadata'] [data-separator-content] {
@@ -716,6 +714,7 @@ code {
 }
 
 [data-rename-icon] {
+  fill: currentColor;
   flex-shrink: 0;
   flex-grow: 0;
 }
@@ -759,6 +758,7 @@ code {
 }
 
 [data-change-icon] {
+  fill: currentColor;
   flex-shrink: 0;
 }
 

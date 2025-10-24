@@ -82,18 +82,9 @@ interface DiffFileBaseOptions<LAnnotation> {
   renderAnnotation?(
     annotation: DiffLineAnnotation<LAnnotation>
   ): HTMLElement | undefined;
-  onLineClick?(
-    props: OnDiffLineClickProps,
-    fileDiff: FileDiffMetadata
-  ): unknown;
-  onLineEnter?(
-    props: DiffLineEventBaseProps,
-    fileDiff: FileDiffMetadata
-  ): unknown;
-  onLineLeave?(
-    props: DiffLineEventBaseProps,
-    fileDiff: FileDiffMetadata
-  ): unknown;
+  onLineClick?(props: OnDiffLineClickProps): unknown;
+  onLineEnter?(props: DiffLineEventBaseProps): unknown;
+  onLineLeave?(props: DiffLineEventBaseProps): unknown;
 }
 
 interface DiffFileThemeRendererOptions<LAnnotation>
@@ -223,6 +214,44 @@ export class FileDiff<LAnnotation = undefined> {
     this.fileContainer = undefined;
   }
 
+  hydrate(props: FileDiffRenderProps<LAnnotation>) {
+    this.fileContainer = props.fileContainer;
+    if (this.fileContainer == null) {
+      throw new Error(
+        'FileDiff: you must provide a fileContainer on hydration'
+      );
+    }
+    this.lineAnnotations = props.lineAnnotations ?? this.lineAnnotations;
+    if (props.newFile != null && props.oldFile != null) {
+      this.newFile = props.newFile;
+      this.oldFile = props.oldFile;
+    }
+    if (props.fileDiff != null) {
+      this.fileDiff = props.fileDiff;
+    }
+    for (const element of Array.from(
+      this.fileContainer.shadowRoot?.children ?? []
+    )) {
+      if (element instanceof SVGElement) {
+        this.spriteSVG = element;
+        continue;
+      }
+      if (!(element instanceof HTMLElement)) {
+        continue;
+      }
+      if (element instanceof HTMLPreElement) {
+        this.pre = element;
+        this.attachEventListeners(this.pre);
+        this.setupResizeObserver(this.pre);
+        continue;
+      }
+      if ('pjsHeader' in element.dataset) {
+        this.headerElement = element;
+        continue;
+      }
+    }
+  }
+
   async render(props: FileDiffRenderProps<LAnnotation>) {
     const { forceRender = false, lineAnnotations, containerWrapper } = props;
     const annotationsChanged = !deepEquals(
@@ -316,16 +345,11 @@ export class FileDiff<LAnnotation = undefined> {
 
   spriteSVG: SVGElement | undefined;
 
-  private attachEventListeners() {
-    if (this.fileContainer == null) return;
-
-    const shadowRoot = this.fileContainer.shadowRoot as HTMLElement | null;
-    if (shadowRoot == null) return;
-
-    // Remove old event listeners if they exist
-    shadowRoot.removeEventListener('click', this.handleMouseClick);
-    shadowRoot.removeEventListener('mousemove', this.handleMouseMove);
-    shadowRoot.removeEventListener('mouseleave', this.handleMouseLeave);
+  private attachEventListeners(pre: HTMLPreElement) {
+    // Remove old event listeners if they exist, probably don't
+    pre.removeEventListener('click', this.handleMouseClick);
+    pre.removeEventListener('mousemove', this.handleMouseMove);
+    pre.removeEventListener('mouseout', this.handleMouseLeave);
 
     const {
       onLineClick,
@@ -335,12 +359,12 @@ export class FileDiff<LAnnotation = undefined> {
     } = this.options;
 
     if (onLineClick != null || hunkSeparators === 'line-info') {
-      shadowRoot.addEventListener('click', this.handleMouseClick);
+      pre.addEventListener('click', this.handleMouseClick);
     }
     if (onLineEnter != null || onLineLeave != null) {
-      shadowRoot.addEventListener('mousemove', this.handleMouseMove);
+      pre.addEventListener('mousemove', this.handleMouseMove);
       if (onLineLeave != null) {
-        shadowRoot.addEventListener('mouseleave', this.handleMouseLeave);
+        pre.addEventListener('mouseleave', this.handleMouseLeave);
       }
     }
   }
@@ -350,12 +374,9 @@ export class FileDiff<LAnnotation = undefined> {
       (fileContainer != null && fileContainer === this.fileContainer) ||
       (fileContainer == null && this.fileContainer != null)
     ) {
-      // Re-attach event listeners with updated callbacks
-      this.attachEventListeners();
       return this.fileContainer;
     }
-    this.fileContainer =
-      fileContainer ?? document.createElement('pjs-container');
+    this.fileContainer = fileContainer ?? document.createElement('file-diff');
     if (this.spriteSVG == null) {
       const fragment = document.createElement('div');
       fragment.innerHTML = SVGSpriteSheet;
@@ -365,7 +386,6 @@ export class FileDiff<LAnnotation = undefined> {
         this.fileContainer.shadowRoot?.appendChild(this.spriteSVG);
       }
     }
-    this.attachEventListeners();
     return this.fileContainer;
   }
 
@@ -382,8 +402,8 @@ export class FileDiff<LAnnotation = undefined> {
     this.handleMouseEvent({ eventType: 'move', event });
   };
   handleMouseLeave = () => {
-    if (this.hoveredRow == null || this.fileDiff == null) return;
-    this.options.onLineLeave?.(this.hoveredRow, this.fileDiff);
+    if (this.hoveredRow == null) return;
+    this.options.onLineLeave?.(this.hoveredRow);
     this.hoveredRow = undefined;
   };
 
@@ -440,7 +460,6 @@ export class FileDiff<LAnnotation = undefined> {
   }
 
   private handleMouseEvent({ eventType, event }: HandleMouseEventProps) {
-    if (this.fileDiff == null) return;
     const data = this.getLineData(event.composedPath());
     switch (eventType) {
       case 'move': {
@@ -451,12 +470,12 @@ export class FileDiff<LAnnotation = undefined> {
           break;
         }
         if (this.hoveredRow != null) {
-          this.options.onLineLeave?.(this.hoveredRow, this.fileDiff);
+          this.options.onLineLeave?.(this.hoveredRow);
           this.hoveredRow = undefined;
         }
         if (data?.type === 'line') {
           this.hoveredRow = data;
-          this.options.onLineEnter?.(this.hoveredRow, this.fileDiff);
+          this.options.onLineEnter?.(this.hoveredRow);
         }
         break;
       }
@@ -468,7 +487,7 @@ export class FileDiff<LAnnotation = undefined> {
           break;
         }
         if (data.type === 'line') {
-          this.options.onLineClick?.({ ...data, event }, this.fileDiff);
+          this.options.onLineClick?.({ ...data, event });
         }
         break;
     }
@@ -478,6 +497,7 @@ export class FileDiff<LAnnotation = undefined> {
     // If we haven't created a pre element yet, lets go ahead and do that
     if (this.pre == null) {
       this.pre = document.createElement('pre');
+      this.attachEventListeners(this.pre);
       container.shadowRoot?.appendChild(this.pre);
     }
     // If we have a new parent container for the pre element, lets go ahead and
