@@ -24,6 +24,8 @@ import { DiffStyles } from './diff-examples/DiffStyles/DiffStyles';
 import { DIFF_STYLES } from './diff-examples/DiffStyles/constants';
 import { FontStyles } from './diff-examples/FontStyles/FontStyles';
 import { FONT_STYLES } from './diff-examples/FontStyles/constants';
+import { LineSelection } from './diff-examples/LineSelection/LineSelection';
+import { LINE_SELECTION_EXAMPLE } from './diff-examples/LineSelection/constants';
 import { ShikiThemes } from './diff-examples/ShikiThemes/ShikiThemes';
 import { SHIKI_THEMES } from './diff-examples/ShikiThemes/constants';
 import { SplitUnified } from './diff-examples/SplitUnified/SplitUnified';
@@ -42,6 +44,7 @@ export default function Home() {
         {/* <PrebuiltReact /> */}
         <AnnotationsSection />
         <AcceptRejectSection />
+        <LineSelectionSection />
         <ArbitraryFilesSection />
       </section>
 
@@ -125,6 +128,14 @@ async function AnnotationsSection() {
   return (
     <Annotations
       prerenderedDiff={await preloadMultiFileDiff(ANNOTATION_EXAMPLE)}
+    />
+  );
+}
+
+async function LineSelectionSection() {
+  return (
+    <LineSelection
+      prerenderedDiff={await preloadMultiFileDiff(LINE_SELECTION_EXAMPLE)}
     />
   );
 }

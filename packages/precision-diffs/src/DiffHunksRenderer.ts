@@ -745,10 +745,13 @@ export class DiffHunksRenderer<LAnnotation = undefined> {
         if (currentChangeGroup != null) {
           lineIndex =
             currentChangeGroup.diffGroupStartIndex +
-            Math.max(
-              currentChangeGroup.additionLines.length,
-              currentChangeGroup.deletionLines.length
-            );
+            (unified
+              ? currentChangeGroup.additionLines.length +
+                currentChangeGroup.deletionLines.length
+              : Math.max(
+                  currentChangeGroup.additionLines.length,
+                  currentChangeGroup.deletionLines.length
+                ));
         }
         currentChangeGroup = undefined;
         if (unified) {
@@ -756,6 +759,7 @@ export class DiffHunksRenderer<LAnnotation = undefined> {
           unifiedLineInfo[unifiedContent.length] = {
             type: isExpandedContext ? 'context-expanded' : 'context',
             lineNumber: additionLineNumber + 1,
+            altLineNumber: deletionLineNumber + 1,
             lineIndex,
           };
           const span = createMirroredAnnotationSpan({
@@ -774,11 +778,13 @@ export class DiffHunksRenderer<LAnnotation = undefined> {
           deletionLineInfo[deletionContent.length] = {
             type: isExpandedContext ? 'context-expanded' : 'context',
             lineNumber: deletionLineNumber + 1,
+            altLineNumber: additionLineNumber + 1,
             lineIndex,
           };
           additionLineInfo[additionContent.length] = {
             type: isExpandedContext ? 'context-expanded' : 'context',
             lineNumber: additionLineNumber + 1,
+            altLineNumber: deletionLineNumber + 1,
             lineIndex,
           };
           const [deletionSpan, additionSpan] = createMirroredAnnotationSpan({

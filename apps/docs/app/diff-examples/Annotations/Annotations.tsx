@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import type {
   AnnotationSide,
   DiffLineAnnotation,
+  SelectedLineRange,
 } from '@pierre/precision-diffs';
 import { MultiFileDiff } from '@pierre/precision-diffs/react';
 import type { PreloadMultiFileDiffResult } from '@pierre/precision-diffs/ssr';
@@ -33,11 +34,38 @@ export function Annotations({ prerenderedDiff }: AnnotationsProps) {
     top: number;
     left: number;
   } | null>(null);
-  const [hoveredLine, setHoveredLine] = useState<{
-    side: AnnotationSide;
-    lineNumber: number;
-  } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const addCommentAtLine = useCallback(
+    (side: AnnotationSide, lineNumber: number) => {
+      let added = false;
+      setAnnotations((prev) => {
+        const hasAnnotation = prev.some(
+          (ann) => ann.side === side && ann.lineNumber === lineNumber
+        );
+
+        if (hasAnnotation) return prev;
+
+        added = true;
+        return [
+          ...prev,
+          {
+            side,
+            lineNumber,
+            metadata: {
+              key: `${side}-${lineNumber}`,
+              isThread: false,
+            },
+          },
+        ];
+      });
+
+      if (added) {
+        setButtonPosition(null);
+      }
+    },
+    []
+  );
 
   const handleLineEnter = useCallback(
     (props: {
@@ -52,53 +80,46 @@ export function Annotations({ prerenderedDiff }: AnnotationsProps) {
 
       const { annotationSide, lineNumber } = props;
 
-      // Don't show button if there's already an annotation on this line
       const hasAnnotation = annotations.some(
         (ann) => ann.side === annotationSide && ann.lineNumber === lineNumber
       );
 
       if (hasAnnotation) {
         setButtonPosition(null);
-        setHoveredLine(null);
         return;
       }
 
-      // Get the position of the line element relative to the container
       const containerRect = container.getBoundingClientRect();
       const lineRect = lineElement.getBoundingClientRect();
 
       setButtonPosition({
         top: lineRect.top - containerRect.top + lineRect.height / 2,
-        left: 16, // Fixed position from left edge
+        left: 16,
       });
-
-      setHoveredLine({ side: annotationSide, lineNumber });
     },
     [annotations]
   );
 
   const handleContainerMouseLeave = useCallback(() => {
     setButtonPosition(null);
-    setHoveredLine(null);
   }, []);
 
-  const handleAddComment = useCallback(() => {
-    if (hoveredLine != null) {
-      setAnnotations((prev) => [
-        ...prev,
-        {
-          side: hoveredLine.side,
-          lineNumber: hoveredLine.lineNumber,
-          metadata: {
-            key: `${hoveredLine.side}-${hoveredLine.lineNumber}`,
-            isThread: false, // Start as a form, not a thread yet
-          },
-        },
-      ]);
-      setButtonPosition(null);
-      setHoveredLine(null);
-    }
-  }, [hoveredLine]);
+  const hasOpenCommentForm = annotations.some((ann) => !ann.metadata.isThread);
+  const [selectedRange, setSelectedRange] = useState<SelectedLineRange | null>(
+    null
+  );
+
+  const handleLineSelectionEnd = useCallback(
+    (range: SelectedLineRange | null) => {
+      setSelectedRange(range);
+      if (range == null) return;
+      const derivedSide = range.endSide ?? range.side;
+      const side: AnnotationSide =
+        derivedSide === 'deletions' ? 'deletions' : 'additions';
+      addCommentAtLine(side, Math.max(range.end, range.start));
+    },
+    [addCommentAtLine]
+  );
 
   const handleSubmitComment = useCallback(
     (side: AnnotationSide, lineNumber: number) => {
@@ -115,6 +136,7 @@ export function Annotations({ prerenderedDiff }: AnnotationsProps) {
           (ann) => !(ann.side === side && ann.lineNumber === lineNumber)
         )
       );
+      setSelectedRange(null);
     },
     []
   );
@@ -130,11 +152,10 @@ export function Annotations({ prerenderedDiff }: AnnotationsProps) {
         className="relative flex flex-col gap-3"
         onMouseLeave={handleContainerMouseLeave}
       >
-        {buttonPosition != null && (
+        {buttonPosition != null && !hasOpenCommentForm && (
           <Button
             size="icon-sm"
             variant="default"
-            onClick={handleAddComment}
             style={{
               position: 'absolute',
               top: buttonPosition.top,
@@ -144,6 +165,7 @@ export function Annotations({ prerenderedDiff }: AnnotationsProps) {
               backgroundColor: '#1a76d4',
               transition: 'none',
               cursor: 'pointer',
+              pointerEvents: 'none',
             }}
           >
             <IconPlus />
@@ -152,9 +174,12 @@ export function Annotations({ prerenderedDiff }: AnnotationsProps) {
         <MultiFileDiff
           {...prerenderedDiff}
           className="diff-container"
+          selectedLines={selectedRange}
           options={{
             ...prerenderedDiff.options,
             onLineEnter: handleLineEnter,
+            enableLineSelection: !hasOpenCommentForm,
+            onLineSelectionEnd: handleLineSelectionEnd,
           }}
           lineAnnotations={annotations}
           renderAnnotation={(annotation) =>
@@ -204,44 +229,55 @@ function CommentForm({
 
   return (
     <div
-      className="max-w-[95%] sm:max-w-[70%]"
       style={{
-        whiteSpace: 'normal',
-        margin: 20,
-        fontFamily: 'Geist',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 1,
       }}
     >
-      <div className="bg-card rounded-lg border p-5 shadow-sm">
-        <div className="flex gap-2">
-          <div className="relative -mt-0.5 flex-shrink-0">
-            <Avatar className="h-6 w-6">
-              <AvatarImage
-                src="https://db.heypierre.app/storage/v1/object/public/avatars/i8UHRtQf_400x400.jpg"
-                alt="You"
-              />
-              <AvatarFallback>Y</AvatarFallback>
-            </Avatar>
-          </div>
-          <div className="flex-1">
-            <textarea
-              ref={textareaRef}
-              placeholder="Leave a comment"
-              className="text-foreground bg-background focus:ring-ring min-h-[60px] w-full resize-none rounded-md border p-2 text-sm focus:ring-2 focus:outline-none"
-            />
-            <div className="mt-3 flex items-center gap-2">
-              <Button
-                size="sm"
-                className="cursor-pointer"
-                onClick={handleSubmit}
-              >
-                Comment
-              </Button>
-              <button
-                onClick={handleCancel}
-                className="text-muted-foreground hover:text-foreground cursor-pointer px-3 py-1 text-sm transition-colors"
-              >
-                Cancel
-              </button>
+      <div style={{ width: '100%' }}>
+        <div
+          className="max-w-[95%] sm:max-w-[70%]"
+          style={{
+            whiteSpace: 'normal',
+            margin: 20,
+            fontFamily: 'Geist',
+          }}
+        >
+          <div className="bg-card rounded-lg border p-5 shadow-sm">
+            <div className="flex gap-2">
+              <div className="relative -mt-0.5 flex-shrink-0">
+                <Avatar className="h-6 w-6">
+                  <AvatarImage
+                    src="https://db.heypierre.app/storage/v1/object/public/avatars/i8UHRtQf_400x400.jpg"
+                    alt="You"
+                  />
+                  <AvatarFallback>Y</AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex-1">
+                <textarea
+                  ref={textareaRef}
+                  placeholder="Leave a comment"
+                  className="text-foreground bg-background focus:ring-ring min-h-[60px] w-full resize-none rounded-md border p-2 text-sm focus:ring-2 focus:outline-none"
+                />
+                <div className="mt-3 flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    className="cursor-pointer"
+                    onClick={handleSubmit}
+                  >
+                    Comment
+                  </Button>
+                  <button
+                    onClick={handleCancel}
+                    className="text-muted-foreground hover:text-foreground cursor-pointer px-3 py-1 text-sm transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

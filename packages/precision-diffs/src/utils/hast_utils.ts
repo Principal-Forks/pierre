@@ -281,9 +281,11 @@ export function convertLine(
     tagName: 'div',
     children,
     properties: {
-      'data-line':
-        lineInfo.metadataContent == null ? `${lineInfo.lineNumber}` : '',
+      'data-line': lineInfo.metadataContent == null ? lineInfo.lineNumber : '',
+      'data-alt-line': lineInfo.altLineNumber,
       'data-line-type': lineInfo.type,
+      'data-line-index':
+        lineInfo.lineIndex >= 0 ? lineInfo.lineIndex : undefined,
     },
   });
 }

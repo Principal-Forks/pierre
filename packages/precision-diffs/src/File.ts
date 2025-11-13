@@ -4,9 +4,15 @@ import type { Element } from 'hast';
 import { FileHeaderRenderer } from './FileHeaderRenderer';
 import { type FileRenderResult, FileRenderer } from './FileRenderer';
 import {
+  LineSelectionManager,
+  type LineSelectionOptions,
+  type SelectedLineRange,
+  pluckLineSelectionOptions,
+} from './LineSelectionManager';
+import {
   MouseEventManager,
   type MouseEventManagerBaseOptions,
-  getMouseEventOptions,
+  pluckMouseEventOptions,
 } from './MouseEventManager';
 import { ResizeManager } from './ResizeManager';
 import { getSharedHighlighter } from './SharedHighlighter';
@@ -35,7 +41,8 @@ interface FileRenderProps<LAnnotation> {
 
 export interface FileOptions<LAnnotation>
   extends BaseCodeOptions,
-    MouseEventManagerBaseOptions<'file'> {
+    MouseEventManagerBaseOptions<'file'>,
+    LineSelectionOptions {
   disableFileHeader?: boolean;
   renderCustomMetadata?: RenderFileMetadata;
   renderAnnotation?(
@@ -62,6 +69,7 @@ export class File<LAnnotation = undefined> {
   private headerRenderer: FileHeaderRenderer;
   private resizeManager: ResizeManager;
   private mouseEventManager: MouseEventManager<'file'>;
+  private lineSelectionManager: LineSelectionManager;
 
   private annotationElements: HTMLElement[] = [];
   private lineAnnotations: LineAnnotation<LAnnotation>[] = [];
@@ -77,14 +85,18 @@ export class File<LAnnotation = undefined> {
     this.resizeManager = new ResizeManager();
     this.mouseEventManager = new MouseEventManager(
       'file',
-      getMouseEventOptions(options)
+      pluckMouseEventOptions(options)
+    );
+    this.lineSelectionManager = new LineSelectionManager(
+      pluckLineSelectionOptions(options)
     );
   }
 
   setOptions(options: FileOptions<LAnnotation> | undefined): void {
     if (options == null) return;
     this.options = options;
-    this.mouseEventManager.setOptions(getMouseEventOptions(options));
+    this.mouseEventManager.setOptions(pluckMouseEventOptions(options));
+    this.lineSelectionManager.setOptions(pluckLineSelectionOptions(options));
   }
 
   private mergeOptions(options: Partial<FileOptions<LAnnotation>>): void {
@@ -126,11 +138,22 @@ export class File<LAnnotation = undefined> {
     this.lineAnnotations = lineAnnotations;
   }
 
+  setSelectedLines(range: SelectedLineRange | null): void {
+    // If we have a render in progress, we should wait for it to finish before
+    // attempting the selection
+    if (this.queuedRender != null) {
+      void this.queuedRender.then(() => this.setSelectedLines(range));
+    } else {
+      this.lineSelectionManager.setSelection(range);
+    }
+  }
+
   cleanUp(): void {
     this.fileRenderer.cleanUp();
     this.headerRenderer.cleanUp();
     this.resizeManager.cleanUp();
     this.mouseEventManager.cleanUp();
+    this.lineSelectionManager.cleanUp();
 
     // Clean up the data
     this.file = undefined;
@@ -188,23 +211,35 @@ export class File<LAnnotation = undefined> {
       this.renderAnnotations();
       this.injectUnsafeCSS();
       this.mouseEventManager.setup(this.pre);
+      this.lineSelectionManager.setup(this.pre);
       if ((this.options.overflow ?? 'scroll') === 'scroll') {
         this.resizeManager.setup(this.pre);
       }
     }
   }
 
-  async render({
-    file,
-    fileContainer,
-    containerWrapper,
-    forceRender = false,
-    lineAnnotations,
-  }: FileRenderProps<LAnnotation>): Promise<void> {
+  private queuedRender: Promise<void> | undefined;
+  async render(props: FileRenderProps<LAnnotation>): Promise<void> {
+    const { file, forceRender = false } = props;
     if (!forceRender && deepEquals(this.file, file)) {
       return;
     }
+    const currentRender = (this.queuedRender =
+      this.queuedRender != null
+        ? this.queuedRender.then(() => this._render(props))
+        : this._render(props));
+    await currentRender;
+    if (this.queuedRender === currentRender) {
+      this.queuedRender = undefined;
+    }
+  }
 
+  private async _render({
+    file,
+    fileContainer,
+    containerWrapper,
+    lineAnnotations,
+  }: FileRenderProps<LAnnotation>): Promise<void> {
     this.file = file;
 
     this.fileRenderer.setOptions(this.options);
@@ -313,6 +348,8 @@ export class File<LAnnotation = undefined> {
     pre.appendChild(this.code);
     this.injectUnsafeCSS();
     this.mouseEventManager.setup(pre);
+    this.lineSelectionManager.setup(pre);
+    this.lineSelectionManager.setDirty();
     if ((this.options.overflow ?? 'scroll') === 'scroll') {
       this.resizeManager.setup(pre);
     } else {

@@ -4,9 +4,15 @@ import type { Element } from 'hast';
 import { DiffHunksRenderer, type HunksRenderResult } from './DiffHunksRenderer';
 import { FileHeaderRenderer } from './FileHeaderRenderer';
 import {
+  LineSelectionManager,
+  type LineSelectionOptions,
+  type SelectedLineRange,
+  pluckLineSelectionOptions,
+} from './LineSelectionManager';
+import {
   MouseEventManager,
   type MouseEventManagerBaseOptions,
-  getMouseEventOptions,
+  pluckMouseEventOptions,
 } from './MouseEventManager';
 import { ResizeManager } from './ResizeManager';
 import { ScrollSyncManager } from './ScrollSyncManager';
@@ -43,7 +49,8 @@ interface FileDiffRenderProps<LAnnotation> {
 
 export interface FileDiffOptions<LAnnotation>
   extends Omit<BaseDiffOptions, 'hunkSeparators'>,
-    MouseEventManagerBaseOptions<'diff'> {
+    MouseEventManagerBaseOptions<'diff'>,
+    LineSelectionOptions {
   hunkSeparators?:
     | Exclude<HunkSeparators, 'custom'>
     | ((hunk: HunkData) => HTMLElement | DocumentFragment);
@@ -77,6 +84,7 @@ export class FileDiff<LAnnotation = undefined> {
   private resizeManager: ResizeManager;
   private scrollSyncManager: ScrollSyncManager;
   private mouseEventManager: MouseEventManager<'diff'>;
+  private lineSelectionManager: LineSelectionManager;
 
   private annotationElements: HTMLElement[] = [];
   private lineAnnotations: DiffLineAnnotation<LAnnotation>[] = [];
@@ -102,13 +110,16 @@ export class FileDiff<LAnnotation = undefined> {
     this.scrollSyncManager = new ScrollSyncManager();
     this.mouseEventManager = new MouseEventManager(
       'diff',
-      getMouseEventOptions(
+      pluckMouseEventOptions(
         options,
         typeof options.hunkSeparators === 'function' ||
           (options.hunkSeparators ?? 'line-info') === 'line-info'
           ? this.handleExpandHunk
           : undefined
       )
+    );
+    this.lineSelectionManager = new LineSelectionManager(
+      pluckLineSelectionOptions(options)
     );
   }
 
@@ -130,7 +141,7 @@ export class FileDiff<LAnnotation = undefined> {
           : options.hunkSeparators,
     });
     this.mouseEventManager.setOptions(
-      getMouseEventOptions(
+      pluckMouseEventOptions(
         options,
         typeof options.hunkSeparators === 'function' ||
           (options.hunkSeparators ?? 'line-info') === 'line-info'
@@ -138,6 +149,7 @@ export class FileDiff<LAnnotation = undefined> {
           : undefined
       )
     );
+    this.lineSelectionManager.setOptions(pluckLineSelectionOptions(options));
   }
 
   private mergeOptions(options: Partial<FileDiffOptions<LAnnotation>>): void {
@@ -178,12 +190,23 @@ export class FileDiff<LAnnotation = undefined> {
     this.lineAnnotations = lineAnnotations;
   }
 
+  setSelectedLines(range: SelectedLineRange | null): void {
+    // If we have a render in progress, we should wait for it to finish before
+    // attempting the selection
+    if (this.queuedRender != null) {
+      void this.queuedRender.then(() => this.setSelectedLines(range));
+    } else {
+      this.lineSelectionManager.setSelection(range);
+    }
+  }
+
   cleanUp(): void {
     this.hunksRenderer.cleanUp();
     this.headerRenderer.cleanUp();
     this.resizeManager.cleanUp();
     this.mouseEventManager.cleanUp();
     this.scrollSyncManager.cleanUp();
+    this.lineSelectionManager.cleanUp();
 
     // Clean up the data
     this.fileDiff = undefined;
@@ -248,6 +271,7 @@ export class FileDiff<LAnnotation = undefined> {
       this.renderAnnotations();
       this.injectUnsafeCSS();
       this.mouseEventManager.setup(this.pre);
+      this.lineSelectionManager.setup(this.pre);
       if ((this.options.overflow ?? 'scroll') === 'scroll') {
         this.resizeManager.setup(this.pre);
         this.scrollSyncManager.setup(this.pre);
@@ -276,39 +300,55 @@ export class FileDiff<LAnnotation = undefined> {
     void this.rerender();
   }
 
-  async render({
-    oldFile,
-    newFile,
-    fileDiff,
-    fileContainer,
-    forceRender = false,
-    lineAnnotations,
-    containerWrapper,
-  }: FileDiffRenderProps<LAnnotation>): Promise<void> {
+  private queuedRender: Promise<void> | undefined;
+  async render(props: FileDiffRenderProps<LAnnotation>): Promise<void> {
+    const {
+      oldFile,
+      newFile,
+      fileDiff,
+      forceRender = false,
+      lineAnnotations,
+    } = props;
+    // Ideally this would just a quick === check because lineAnnotations is
+    // unbounded
     const annotationsChanged =
       lineAnnotations != null &&
-      // Ideally this would just a quick === check because lineAnnotations is
-      // unbounded
       !deepEquals(lineAnnotations, this.lineAnnotations);
     if (
       !forceRender &&
-      oldFile != null &&
-      newFile != null &&
       !annotationsChanged &&
-      deepEquals(oldFile, this.oldFile) &&
-      deepEquals(newFile, this.newFile)
-    ) {
-      return;
-    }
-    if (
-      !forceRender &&
-      fileDiff != null &&
-      fileDiff === this.fileDiff &&
-      !annotationsChanged
+      // If using the fileDiff API, lets check to see if they are equal to
+      // avoid doing work
+      ((fileDiff != null && fileDiff === this.fileDiff) ||
+        // If using the oldFile/newFile API then lets check to see if they are
+        // equal
+        (oldFile != null &&
+          newFile != null &&
+          deepEquals(oldFile, this.oldFile) &&
+          deepEquals(newFile, this.newFile)))
     ) {
       return;
     }
 
+    const currentRender = (this.queuedRender =
+      this.queuedRender != null
+        ? this.queuedRender.then(() => this._render(props))
+        : this._render(props));
+
+    await currentRender;
+    if (this.queuedRender === currentRender) {
+      this.queuedRender = undefined;
+    }
+  }
+
+  private async _render({
+    oldFile,
+    newFile,
+    fileDiff,
+    fileContainer,
+    lineAnnotations,
+    containerWrapper,
+  }: FileDiffRenderProps<LAnnotation>): Promise<void> {
     this.oldFile = oldFile;
     this.newFile = newFile;
     if (fileDiff != null) {
@@ -592,6 +632,8 @@ export class FileDiff<LAnnotation = undefined> {
     this.injectUnsafeCSS();
 
     this.mouseEventManager.setup(pre);
+    this.lineSelectionManager.setup(pre);
+    this.lineSelectionManager.setDirty();
     if ((this.options.overflow ?? 'scroll') === 'scroll') {
       this.resizeManager.setup(pre);
       this.scrollSyncManager.setup(pre, codeDeletions, codeAdditions);

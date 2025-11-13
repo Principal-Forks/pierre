@@ -17,13 +17,19 @@ export function FileDiff<LAnnotation = undefined>({
   fileDiff,
   options,
   lineAnnotations,
+  selectedLines,
   className,
   style,
   prerenderedHTML,
   renderAnnotation,
   renderHeaderMetadata,
 }: FileDiffProps<LAnnotation>): React.JSX.Element {
-  const ref = useFileDiffInstance({ fileDiff, options, lineAnnotations });
+  const ref = useFileDiffInstance({
+    fileDiff,
+    options,
+    lineAnnotations,
+    selectedLines,
+  });
   const children = renderAnnotationChildren({
     fileDiff,
     renderHeaderMetadata,
