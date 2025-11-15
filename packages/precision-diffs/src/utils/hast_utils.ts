@@ -448,8 +448,13 @@ function createMetadataElement(
     let additions = 0;
     let deletions = 0;
     for (const hunk of fileDiff.hunks) {
-      additions += hunk.additionLines;
-      deletions += hunk.deletionLines;
+      for (const line of hunk.hunkContent ?? []) {
+        if (line.startsWith('+')) {
+          additions++;
+        } else if (line.startsWith('-')) {
+          deletions++;
+        }
+      }
     }
     if (deletions > 0) {
       children.push(

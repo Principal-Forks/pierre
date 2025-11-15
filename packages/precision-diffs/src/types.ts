@@ -51,30 +51,15 @@ export interface ParsedPatch {
   files: FileDiffMetadata[];
 }
 
-export interface ContextContent {
-  type: 'context';
-  lines: string[];
-}
-
-export interface ChangeContent {
-  type: 'change';
-  deletions: string[];
-  additions: string[];
-}
-
 export interface Hunk {
   collapsedBefore: number;
-  splitLineStart: number;
-  splitLineCount: number;
-  unifiedLineStart: number;
-  unifiedLineCount: number;
   additionCount: number;
   additionStart: number;
   additionLines: number;
-  deletionCount: number;
-  deletionStart: number;
-  deletionLines: number;
-  hunkContent: (ContextContent | ChangeContent)[];
+  deletedCount: number;
+  deletedStart: number;
+  deletedLines: number;
+  hunkContent: string[] | undefined;
   hunkContext: string | undefined;
   hunkSpecs: string | undefined;
 }
@@ -84,8 +69,7 @@ export interface FileDiffMetadata {
   prevName: string | undefined;
   type: ChangeTypes;
   hunks: Hunk[];
-  splitLineCount: number;
-  unifiedLineCount: number;
+  lines: number;
   oldMode?: string;
   mode?: string;
   oldLines?: string[];
