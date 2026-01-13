@@ -1,5 +1,6 @@
 'use client';
 
+import { IconColorDark, IconColorLight } from '@/components/icons';
 import { ButtonGroup, ButtonGroupItem } from '@/components/ui/button-group';
 import { useTheme } from 'next-themes';
 import Image, { type StaticImageData } from 'next/image';
@@ -37,8 +38,12 @@ export function ThemeScreenshots() {
         value={activeTheme}
         onValueChange={(value) => setActiveTheme(value as 'light' | 'dark')}
       >
-        <ButtonGroupItem value="light">Pierre Light</ButtonGroupItem>
-        <ButtonGroupItem value="dark">Pierre Dark</ButtonGroupItem>
+        <ButtonGroupItem value="light">
+          <IconColorLight /> Pierre Light
+        </ButtonGroupItem>
+        <ButtonGroupItem value="dark">
+          <IconColorDark /> Pierre Dark
+        </ButtonGroupItem>
       </ButtonGroup>
 
       <div className="relative overflow-hidden rounded-[16px] border border-[rgb(0_0_0_/_0.1)] dark:border-[rgb(255_255_255_/_0.15)]">
