@@ -1,4 +1,238 @@
 {
-  "nodes": [],
-  "edges": []
+  "pv": {
+    "name": "PierreJS Architecture",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "js-demo",
+      "type": "group",
+      "x": 100,
+      "y": 50,
+      "width": 120,
+      "height": 60,
+      "color": "#3b82f6",
+      "pv": {
+        "nodeType": "App",
+        "name": "@pierre/js-demo",
+        "description": "React demo application"
+      }
+    },
+    {
+      "id": "js-docs",
+      "type": "group",
+      "x": 300,
+      "y": 50,
+      "width": 120,
+      "height": 60,
+      "color": "#3b82f6",
+      "pv": {
+        "nodeType": "App",
+        "name": "@pierre/js-docs",
+        "description": "Documentation site"
+      }
+    },
+    {
+      "id": "solid-diff-demo",
+      "type": "group",
+      "x": 500,
+      "y": 50,
+      "width": 120,
+      "height": 60,
+      "color": "#3b82f6",
+      "pv": {
+        "nodeType": "App",
+        "name": "@pierre/solid-diff-demo",
+        "description": "SolidJS demo"
+      }
+    },
+    {
+      "id": "diffs-core",
+      "type": "group",
+      "x": 300,
+      "y": 200,
+      "width": 140,
+      "height": 80,
+      "color": "#8b5cf6",
+      "pv": {
+        "nodeType": "CoreLib",
+        "name": "@pierre/diffs",
+        "description": "Core library v1.0.5"
+      }
+    },
+    {
+      "id": "storage-elements",
+      "type": "group",
+      "x": 100,
+      "y": 350,
+      "width": 130,
+      "height": 60,
+      "color": "#10b981",
+      "pv": {
+        "nodeType": "UIComponents",
+        "name": "@pierre/storage-elements",
+        "description": "React UI library v0.0.2"
+      }
+    },
+    {
+      "id": "storage-elements-next",
+      "type": "group",
+      "x": 300,
+      "y": 350,
+      "width": 130,
+      "height": 60,
+      "color": "#f59e0b",
+      "pv": {
+        "nodeType": "Integration",
+        "name": "@pierre/storage-elements-next",
+        "description": "Next.js integration v0.0.7"
+      }
+    },
+    {
+      "id": "bun-runtime",
+      "type": "group",
+      "x": 500,
+      "y": 350,
+      "width": 100,
+      "height": 60,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "Bun Runtime",
+        "description": "Package manager & runtime"
+      }
+    },
+    {
+      "id": "external-storage",
+      "type": "group",
+      "x": 100,
+      "y": 450,
+      "width": 100,
+      "height": 50,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "@pierre/storage",
+        "description": "External package"
+      }
+    },
+    {
+      "id": "github-api",
+      "type": "group",
+      "x": 300,
+      "y": 450,
+      "width": 100,
+      "height": 50,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "GitHub API",
+        "description": "Platform integration"
+      }
+    },
+    {
+      "id": "shiki",
+      "type": "group",
+      "x": 500,
+      "y": 450,
+      "width": 80,
+      "height": 50,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "Shiki",
+        "description": "Syntax highlighting"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "demo-to-diffs",
+      "fromNode": "js-demo",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "docs-to-diffs",
+      "fromNode": "js-docs",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "docs-to-storage-next",
+      "fromNode": "js-docs",
+      "toNode": "storage-elements-next",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "solid-to-diffs",
+      "fromNode": "solid-diff-demo",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "storage-next-to-external",
+      "fromNode": "storage-elements-next",
+      "toNode": "external-storage",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "diffs-to-shiki",
+      "fromNode": "diffs-core",
+      "toNode": "shiki",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#f59e0b",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "docs-to-github",
+      "fromNode": "js-docs",
+      "toNode": "github-api",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#8b5cf6",
+      "pv": {
+        "edgeType": "IntegratesWith"
+      }
+    },
+    {
+      "id": "storage-to-github",
+      "fromNode": "storage-elements",
+      "toNode": "github-api",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#8b5cf6",
+      "pv": {
+        "edgeType": "IntegratesWith"
+      }
+    }
+  ]
 }

@@ -1,6 +1,48 @@
 version: "1.0.0"
-name: "Component Library"
 
-nodeComponents: {}
+nodeComponents:
+  App:
+    description: "Frontend applications and demos"
+    color: "#3b82f6"
+    icon: "App"
+  
+  CoreLib:
+    description: "Main product libraries and core functionality"
+    color: "#8b5cf6"
+    icon: "Library"
+  
+  UIComponents:
+    description: "React component libraries and UI utilities"
+    color: "#10b981"
+    icon: "Component"
+  
+  Integration:
+    description: "Platform-specific integrations and utilities"
+    color: "#f59e0b"
+    icon: "Plug"
+  
+  External:
+    description: "External dependencies and services"
+    color: "#6b7280"
+    icon: "Cloud"
 
-edgeComponents: {}
+edgeComponents:
+  DependsOn:
+    description: "Package dependency relationship"
+    color: "#3b82f6"
+    style: "solid"
+  
+  IntegratesWith:
+    description: "Integration relationship"
+    color: "#8b5cf6"
+    style: "dashed"
+  
+  UsesAPI:
+    description: "API usage relationship"
+    color: "#f59e0b"
+    style: "dotted"
+  
+  Imports:
+    description: "Code import relationship"
+    color: "#10b981"
+    style: "solid"
