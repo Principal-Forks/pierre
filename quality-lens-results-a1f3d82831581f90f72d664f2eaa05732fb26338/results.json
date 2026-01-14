@@ -1,0 +1,6910 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-14T02:54:05.018Z",
+    "version": "1.0.0",
+    "totalPackages": 7,
+    "totalLenses": 28,
+    "git": {
+      "commit": "a1f3d82831581f90f72d664f2eaa05732fb26338",
+      "branch": "main",
+      "repository": "Principal-Forks/pierre"
+    }
+  },
+  "results": [
+    {
+      "package": {
+        "name": "@pierre/js-demo",
+        "path": "apps/demo"
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 3530,
+        "timestamp": 1768359231077
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-demo",
+        "path": "apps/demo"
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 775,
+        "timestamp": 1768359231853
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 10,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "apps/demo/src/components/App.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/components/FileStream.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/main.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/mocks/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/utils/createFakeContentStream.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/utils/createHighlighterCleanup.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/utils/createWorkerAPI.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/utils/renderAnnotation.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/src/vite-env.d.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/demo/vite.config.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-demo",
+        "path": "apps/demo"
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 3,
+        "timestamp": 1768359231858
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-demo",
+        "path": "apps/demo"
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 931,
+        "timestamp": 1768359232791
+      },
+      "issues": [
+        {
+          "file": "apps/demo/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/apps/demo/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "apps/demo/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/apps/demo/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": "apps/demo/index.html",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-docs",
+        "path": "apps/docs"
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 759,
+        "timestamp": 1768359233551
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-docs",
+        "path": "apps/docs"
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 581,
+        "timestamp": 1768359234134
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 449,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "apps/docs/app/Hero.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/api/code-storage/github/callback/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/api/code-storage/github/installations/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/api/code-storage/repo/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/code-storage/success/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/Annotations/Annotations.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/Annotations/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/ArbitraryFiles/ArbitraryFiles.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/ArbitraryFiles/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/CustomHeader/CustomHeader.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/CustomHeader/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/DiffStyles/DiffStyles.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/DiffStyles/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/FeatureHeader.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/FontStyles/FontStyles.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/FontStyles/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/LineSelection/LineSelection.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/LineSelection/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/ShikiThemes/ShikiThemes.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/ShikiThemes/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/SplitUnified/SplitUnified.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/diff-examples/SplitUnified/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/CopyCodeButton.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/CoreTypes/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/DocsCodeExample.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/DocsLayout.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/DocsSidebar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/HeadingAnchors.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Installation/PackageManagerTabs.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Installation/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Overview/CodeToggle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Overview/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/ProseWrapper.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/ReactAPI/ComponentTabs.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/ReactAPI/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/SSR/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/SidebarWrapper.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Styling/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Utilities/AcceptRejectTabs.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/Utilities/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/VanillaAPI/ComponentTabs.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/VanillaAPI/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/WorkerPool/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/docs/types.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/layout.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/shadcn/Examples.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/shadcn/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/ssr/SSRPage.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/ssr/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/ssr/ssr_types.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/theme/ThemeScreenshots.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/app/theme/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/Button.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/CustomScrollbarCSS.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/Footer.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/Header.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/MobileMenuButton.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/NavLink.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/PierreCompanySection.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/WorkerPoolContext.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/Color.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconA11y.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAlignCenter.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAlignLeft.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAlignRight.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAnnotate.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconApp.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAppToolbar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconApproved.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconApprovedArrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArchived.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArray.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowDownRight.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowLeftBar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowRight.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowRightBar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowRightShort.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowShort.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowUpRight.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowUpRightCircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowsExpand.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconArrowsUpDown.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAsterisk.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAsteriskSquircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAt.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconAt2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBan.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBarChart.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBarChart2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBell.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBellFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBellUnread.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBellUnreadFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBin.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBinFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBoard.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBolt.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBook.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBookClosed.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBookmark.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBookmarkFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBox.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBoxTape.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBraces.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBracesAt.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrackets.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBranch.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBranches.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandBuildkite.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandCursor.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandDiscord.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandGit.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandGithub.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandGoogle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandLinear.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandNotion.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandStorybook.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandTwitter.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandTwitterX.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandVercel.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandVsCode.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrandZed.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBrush.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBug.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBuilding.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBuildingPlus.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBulb.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBulbFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconBullseye.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCalendar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheck.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheckCheck.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheckCircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheckLg.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheckbox.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheckboxFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCheckboxHalf.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevron.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevronFlat.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevronSm.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevrons.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevronsClose.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevronsNarrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconChevronsNarrowClose.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCiFailed.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCiFailedFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCiFailedOctagon.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCiFailedOctagonFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCiWarning.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCiWarningFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconClockArrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCode.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeBlock.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeComments.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeFolder.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeSearch.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeStyleBars.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeStyleBg.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCodeStyleInline.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCollapsedRow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconColorAuto.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconColorDark.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconColorLight.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconComment.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommentAdd.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommentFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommentIssue.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommentRightResolvedFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommentSuggest.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommit.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommit2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommitArrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCommitArrow2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconConflict.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconConvo.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconConvoFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCopy.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCopyFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCreditCard.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCrown.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCrownFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconCursor.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDesktop.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffAdd.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffAddFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffBlended.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffDeleted.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffDeletedFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffModified.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffModifiedFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffSplit.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDiffUnified.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDock.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDownload.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDraft.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDragonball.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconDragonballFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEllipsis.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEmojiSmile.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEmojiSmileDashed.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEmojiSmileFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEnvelope.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEnvelopeFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEnvelopeOpenFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconExpand.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconExpandAll.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconExpandRow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconExtensions.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEye.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconEyeSlash.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFile.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileCode.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileExport.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileLocked.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileRichText.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileText.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileTree.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFileTreeFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFiles.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFilter.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFire.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFlag.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFlagFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFolder.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFolderOpen.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFolders.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFullscreen.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFullscreenFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFunction.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconFunctionFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGauge.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGear.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGearFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGlobe.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGrid.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGrid2x1.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconGrip.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHash.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHeart.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHeartFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHome.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHome2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHome2Fill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHomeFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconHunkDivider.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconImage.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconImageGif.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInProgress.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInProgressArrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInReview.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInReviewArrow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInReviewRightFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInbox.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInboxUnread.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconIndent.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInfo.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconInfoFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconIssue.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconKey.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconKeyFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLaptop.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLaurel.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers2Bottom.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers2Outline.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers2Top.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers3Bottom.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers3Middle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLayers3Top.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLifeRaft.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLineGraph.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLineGraphArea.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLineGraphAxis.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLineGraphBase.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLinear1.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLinear2.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLinear3.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLinearDone.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLink.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconListCheck.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconListOrdered.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconListUnordered.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLock.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLockKeyhole.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLockKeyholeOpen.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLockOpen.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconLogs.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMagnifyingGlassFocus.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMakeLonger.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMakeShorter.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMap.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMapFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMedal.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMenu.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMerged.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMergedContinuous.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMergedFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMicrophone.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMinus.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMinusLg.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconMoon.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconNoNewLine.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconNote.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconOutdent.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPaperclip.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconParagraph.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconParagraphPlus.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconParentheses.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPencil.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPencilSquircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPeople.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPerson.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPersonStatus.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPhone.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPierre.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPin.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPlay.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPlayCircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPlus.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPlusLg.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPlusSparkle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconPushed.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconQuestion.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconQuestionFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconQuestionMark.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconQuoteBlock.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconRefresh.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconRegex.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconReload.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconRepeat.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconReply.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconReplyFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconRows.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSearch.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconServer.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconShare.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconShield.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconShieldFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconShieldKeyhole.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconShieldKeyholeFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSidebar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSidebarLeft.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSidebarLeftOpen.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSidebarOpen.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSignIn.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSignOut.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSignpost.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSignpostFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSortDown.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSortUp.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSparkle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSparkles.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSpelling.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSquircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSquircleLg.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSquircleLgFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSquircleSpeechText.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconStamp.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconStar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconStarFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSun.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSwap.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSwitch.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSwitches.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolAdded.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolDeleted.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolDiffstat.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolDiffstatFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolIgnored.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolMap.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolModified.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolMoved.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolPlaceholder.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolRef.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconSymbolResolved.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTable.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTableColumnAdd.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTableColumnDelete.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTableColumnHeader.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTableRowAdd.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTableRowDelete.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTableRowHeader.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTablet.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTag.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTagFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTarget.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTerminal.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTerminalBash.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTerminalBashFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTerminalFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconText.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTextBold.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTextH1.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTextItalics.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTextStrike.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconThumbsUp.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconThumbsUpFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTodo.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconToken.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconToolbarSide.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconToolbarTop.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconTrash.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconType.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconUnlink.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconVariable.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWaiting.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWaitingFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWarningOctogonFill.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWebhook.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWheelchair.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWordWrap.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWorkflow.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconWrench.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconX.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/IconXSquircle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/icons/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/icons/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/avatar.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/button-group.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/button.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/command.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/dialog.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/dropdown-menu.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/field.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/input-group.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/input.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/label.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/navigation-menu.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/notice.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/popover.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/select.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/separator.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/sonner.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/switch.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/toggle-group.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/toggle.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/components/ui/tooltip.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/lib/mdx.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/lib/rehype-hierarchical-slug.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/lib/remark-toc-ignore.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/lib/utils.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/next.config.mjs",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/postcss.config.mjs",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/types/css-modules.d.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/docs/types/raw-loader.d.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-docs",
+        "path": "apps/docs"
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 3,
+        "timestamp": 1768359234137
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js-docs",
+        "path": "apps/docs"
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 677,
+        "timestamp": 1768359234815
+      },
+      "issues": [
+        {
+          "file": "apps/docs/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/apps/docs/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "apps/docs/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/apps/docs/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": "apps/docs/.gitignore",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/solid-diff-demo",
+        "path": "apps/solid-diff-demo"
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 762,
+        "timestamp": 1768359235579
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/solid-diff-demo",
+        "path": "apps/solid-diff-demo"
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 596,
+        "timestamp": 1768359236175
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 9,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "apps/solid-diff-demo/app.config.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/app.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/components/FileDiffSSR.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/custom-elements.d.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/diff-data.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/entry-client.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/entry-server.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/lib/preload-diff.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "apps/solid-diff-demo/src/routes/index.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/solid-diff-demo",
+        "path": "apps/solid-diff-demo"
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 3,
+        "timestamp": 1768359236179
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/solid-diff-demo",
+        "path": "apps/solid-diff-demo"
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 674,
+        "timestamp": 1768359236854
+      },
+      "issues": [
+        {
+          "file": "apps/solid-diff-demo/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/apps/solid-diff-demo/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "apps/solid-diff-demo/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/apps/solid-diff-demo/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": "apps/solid-diff-demo/.gitignore",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js",
+        "path": ""
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 765,
+        "timestamp": 1768359237623
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js",
+        "path": ""
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 571,
+        "timestamp": 1768359238195
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 621,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "eslint.config.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "prettier.config.mjs",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "scripts/build-icons.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "scripts/build-sprite.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "scripts/svgr-template.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "sprite.config.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "stylelint.config.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "svgo.config.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "update-themes.js",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js",
+        "path": ""
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 3,
+        "timestamp": 1768359238199
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/js",
+        "path": ""
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 660,
+        "timestamp": 1768359238860
+      },
+      "issues": [
+        {
+          "file": "Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": ".browserslistrc",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/diffs",
+        "path": "packages/diffs"
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 756,
+        "timestamp": 1768359239617
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/diffs",
+        "path": "packages/diffs"
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 599,
+        "timestamp": 1768359240216
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 123,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "packages/diffs/src/components/File.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/components/FileDiff.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/components/FileStream.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/components/web-components.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/areLanguagesAttached.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/attachResolvedLanguages.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/cleanUpResolvedLanguages.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/getResolvedLanguages.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/getResolvedOrResolveLanguage.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/hasResolvedLanguages.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/resolveLanguage.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/languages/resolveLanguages.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/shared_highlighter.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/areThemesAttached.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/attachResolvedThemes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/cleanUpResolvedThemes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/getResolvedOrResolveTheme.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/getResolvedThemes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/hasResolvedThemes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/registerCustomTheme.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/resolveTheme.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/highlighter/themes/resolveThemes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/managers/LineSelectionManager.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/managers/MouseEventManager.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/managers/ResizeManager.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/managers/ScrollSyncManager.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/managers/UniversalRenderingManager.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/File.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/FileDiff.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/MultiFileDiff.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/PatchDiff.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/WorkerPoolContext.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/constants.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/jsx.d.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/types.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/utils/renderDiffChildren.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/utils/renderFileChildren.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/utils/templateRender.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/utils/useFileDiffInstance.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/utils/useFileInstance.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/react/utils/useStableCallback.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/renderers/DiffHunksRenderer.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/renderers/FileRenderer.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/shiki-stream/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/shiki-stream/stream.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/shiki-stream/tokenizer.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/shiki-stream/types.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/sprite.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/ssr/FileDiffReact.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/ssr/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/ssr/preloadDiffs.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/ssr/preloadFile.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/ssr/preloadPatchFile.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/ssr/renderHTML.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/string-import.d.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/types.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/areFilesEqual.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/areObjectsEqual.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/areOptionsEqual.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/areSelectionsEqual.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/areThemesEqual.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/cleanLastNewline.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createAnnotationElement.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createAnnotationWrapperNode.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createCodeNode.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createEmptyRowBuffer.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createFileHeaderElement.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createHoverContentNode.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createNoNewlineElement.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createPreElement.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createRowNodes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createSeparator.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createSpanNodeFromToken.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createStyleElement.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createTransformerWithState.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/createUnsafeCSSStyleNode.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/cssWrappers.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/diffAcceptRejectHunk.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/formatCSSVariablePrefix.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getFiletypeFromFileName.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getHighlighterOptions.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getHighlighterThemeStyles.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getHunkSeparatorSlotName.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getIconForType.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getLineAnnotationName.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getLineEndingType.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getLineNodes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getSingularPatch.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getThemes.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/getTotalLineCountFromHunks.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/hast_utils.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/isWorkerContext.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/parseDiffDecorations.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/parseDiffFromFile.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/parseLineType.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/parsePatchFiles.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/prerenderHTMLIfNecessary.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/processLine.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/renderDiffWithHighlighter.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/renderFileWithHighlighter.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/setLanguageOverride.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/utils/setWrapperNodeProps.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/worker/WorkerPoolManager.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/worker/getOrCreateWorkerPoolSingleton.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/worker/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/worker/types.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/worker/worker-portable.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/src/worker/worker.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/DiffHunksRender.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/FileRenderer.ast.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/FileRenderer.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/annotations.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/mocks.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/parseDiffFromFile.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/parsePatchFiles.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/patchFileRender.test.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/test/testUtils.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/diffs/tsdown.config.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/diffs",
+        "path": "packages/diffs"
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 2,
+        "timestamp": 1768359240219
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/diffs",
+        "path": "packages/diffs"
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 671,
+        "timestamp": 1768359240892
+      },
+      "issues": [
+        {
+          "file": "packages/diffs/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/packages/diffs/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "packages/diffs/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/packages/diffs/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": "packages/diffs/LICENSE.md",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements",
+        "path": "packages/storage-elements"
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 770,
+        "timestamp": 1768359241664
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements",
+        "path": "packages/storage-elements"
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 593,
+        "timestamp": 1768359242257
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 17,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/api/github/callback/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/api/github/installations/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/api/repo/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/components/git-platform-sync.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/lib/github-app-connect.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/pages/success/page.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/button.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/command.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/dialog.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/field.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/input.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/label.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/popover.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/select.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/separator.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/components/ui/tooltip.tsx",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements/lib/utils.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements",
+        "path": "packages/storage-elements"
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 3,
+        "timestamp": 1768359242260
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements",
+        "path": "packages/storage-elements"
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 703,
+        "timestamp": 1768359242964
+      },
+      "issues": [
+        {
+          "file": "packages/storage-elements/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/packages/storage-elements/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "packages/storage-elements/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/packages/storage-elements/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": "packages/storage-elements/blocks/git-platform-sync/api/github/callback/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements-next",
+        "path": "packages/storage-elements-next"
+      },
+      "lens": {
+        "id": "eslint",
+        "command": "bun run lint -- --format json"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 2,
+        "duration": 768,
+        "timestamp": 1768359243733
+      },
+      "issues": [],
+      "metrics": {},
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements-next",
+        "path": "packages/storage-elements-next"
+      },
+      "lens": {
+        "id": "typescript",
+        "command": "bun run tsc --noEmit --pretty false"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 592,
+        "timestamp": 1768359244325
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 4,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesWithErrors": 0,
+          "totalErrors": 0,
+          "totalWarnings": 0,
+          "totalSuggestions": 0,
+          "uniqueErrorCodes": 0,
+          "topErrors": []
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "packages/storage-elements-next/src/auth/success-callback.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements-next/src/github/installations.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements-next/src/index.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        },
+        {
+          "file": "packages/storage-elements-next/src/repo/route.ts",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements-next",
+        "path": "packages/storage-elements-next"
+      },
+      "lens": {
+        "id": "bun-test",
+        "command": "bun test --reporter=json"
+      },
+      "execution": {
+        "success": false,
+        "exitCode": 127,
+        "duration": 3,
+        "timestamp": 1768359244328
+      },
+      "issues": [],
+      "metrics": {
+        "filesAnalyzed": 0,
+        "totalIssues": 0,
+        "issuesBySeverity": {
+          "error": 0,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "totalTests": 0,
+          "passedTests": 0,
+          "failedTests": 0,
+          "skippedTests": 0,
+          "expectCalls": 0,
+          "passRate": 0,
+          "duration": 0,
+          "testFilesRun": 0,
+          "functionCoverage": 0,
+          "lineCoverage": 0,
+          "sourceFilesWithCoverage": 0
+        }
+      },
+      "fileMetrics": [],
+      "qualityContext": {}
+    },
+    {
+      "package": {
+        "name": "@pierre/storage-elements-next",
+        "path": "packages/storage-elements-next"
+      },
+      "lens": {
+        "id": "prettier",
+        "command": "bun run format:check"
+      },
+      "execution": {
+        "success": true,
+        "exitCode": 1,
+        "duration": 688,
+        "timestamp": 1768359245016
+      },
+      "issues": [
+        {
+          "file": "packages/storage-elements-next/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/packages/storage-elements-next/noop.js",
+          "line": 1,
+          "column": 1,
+          "severity": "error",
+          "message": "File is not formatted according to Prettier rules",
+          "rule": "prettier",
+          "source": "prettier",
+          "category": "formatting"
+        }
+      ],
+      "metrics": {
+        "filesAnalyzed": 1,
+        "totalIssues": 1,
+        "issuesBySeverity": {
+          "error": 1,
+          "warning": 0,
+          "info": 0,
+          "hint": 0
+        },
+        "executionTime": 0,
+        "custom": {
+          "filesNeedingFormatting": 1,
+          "formattingCompliance": 0
+        }
+      },
+      "fileMetrics": [
+        {
+          "file": "packages/storage-elements-next/Cannot find package '@trivago/prettier-plugin-sort-imports' imported from /home/runner/work/pierre/pierre/packages/storage-elements-next/noop.js",
+          "score": 90,
+          "issueCount": 1,
+          "errorCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0,
+          "categories": {
+            "formatting": 1
+          }
+        },
+        {
+          "file": "packages/storage-elements-next/package.json",
+          "score": 100,
+          "issueCount": 0,
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0,
+          "hintCount": 0
+        }
+      ],
+      "qualityContext": {}
+    }
+  ],
+  "qualityMetrics": {
+    "packages": [
+      {
+        "name": "@pierre/js-demo",
+        "path": "apps/demo",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 89,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      },
+      {
+        "name": "@pierre/js-docs",
+        "path": "apps/docs",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 100,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      },
+      {
+        "name": "@pierre/solid-diff-demo",
+        "path": "apps/solid-diff-demo",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 88,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      },
+      {
+        "name": "@pierre/js",
+        "path": "",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 100,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      },
+      {
+        "name": "@pierre/diffs",
+        "path": "packages/diffs",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 99,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      },
+      {
+        "name": "@pierre/storage-elements",
+        "path": "packages/storage-elements",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 94,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      },
+      {
+        "name": "@pierre/storage-elements-next",
+        "path": "packages/storage-elements-next",
+        "hexagon": {
+          "tests": 0,
+          "deadCode": 0,
+          "formatting": 75,
+          "linting": 0,
+          "types": 100,
+          "documentation": 0
+        },
+        "lensesRan": [
+          "eslint",
+          "typescript",
+          "bun-test",
+          "prettier"
+        ]
+      }
+    ]
+  }
+}
