@@ -4,13 +4,13 @@
 
 lenses:
   # Linting: Code style and bug detection
-  eslint: bun run lint -- --format json
+  eslint: npx eslint . --format json
 
-  # Types: Type safety checking  
-  typescript: bun run tsc --noEmit --pretty false
+  # Types: Type safety checking
+  typescript: npx tsc --noEmit --listFiles
 
   # Tests: Test coverage and results
-  bun-test: bun test --reporter=json
+  bun-test: bun test --coverage
 
-  # Formatting: Code formatting check
-  prettier: bun run format:check
+  # Formatting: Code formatting
+  prettier: npx prettier --check . --no-error-on-unmatched-pattern --log-level debug
