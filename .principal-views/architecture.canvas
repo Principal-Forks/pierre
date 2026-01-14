@@ -14,7 +14,7 @@
       "color": "#3b82f6",
       "pv": {
         "nodeType": "App",
-        "name": "@pierre/js-demo",
+        "name": "js-demo",
         "description": "React Demo App\nVite + TypeScript",
         "fill": "#e0f2fe",
         "stroke": "#2563eb"
@@ -30,7 +30,7 @@
       "color": "#3b82f6",
       "pv": {
         "nodeType": "App",
-        "name": "@pierre/js-docs",
+        "name": "js-docs",
         "description": "Documentation Site\nNext.js + MDX",
         "fill": "#e0f2fe",
         "stroke": "#2563eb"
@@ -46,7 +46,7 @@
       "color": "#3b82f6",
       "pv": {
         "nodeType": "App",
-        "name": "@pierre/solid-diff-demo",
+        "name": "solid-diff-demo",
         "description": "SolidJS Demo\nVinxi + SolidJS",
         "fill": "#e0f2fe",
         "stroke": "#2563eb"
@@ -62,7 +62,7 @@
       "color": "#8b5cf6",
       "pv": {
         "nodeType": "CoreLib",
-        "name": "📦 @pierre/diffs",
+        "name": "📦 diffs",
         "description": "Core Diff Library\nv1.0.5 • Shiki-based",
         "fill": "#f3e8ff",
         "stroke": "#a855f7",
@@ -79,7 +79,7 @@
       "color": "#10b981",
       "pv": {
         "nodeType": "UIComponents",
-        "name": "@pierre/storage-elements",
+        "name": "storage-elements",
         "description": "React UI Components\nv0.0.2 • Radix UI",
         "fill": "#d1fae5",
         "stroke": "#059663"
@@ -95,7 +95,7 @@
       "color": "#f59e0b",
       "pv": {
         "nodeType": "Integration",
-        "name": "@pierre/storage-elements-next",
+        "name": "storage-elements-next",
         "description": "Next.js Integration\nv0.0.7 • API Utils",
         "fill": "#fef3c7",
         "stroke": "#d97706"
