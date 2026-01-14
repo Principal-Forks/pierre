@@ -1,0 +1,320 @@
+{
+  "pv": {
+    "name": "PierreJS Architecture Overview",
+    "version": "1.0.0"
+  },
+  "nodes": [
+    {
+      "id": "js-demo",
+      "type": "group",
+      "x": 50,
+      "y": 50,
+      "width": 130,
+      "height": 70,
+      "color": "#3b82f6",
+      "pv": {
+        "nodeType": "App",
+        "name": "@pierre/js-demo",
+        "description": "React Demo App\nVite + TypeScript",
+        "fill": "#e0f2fe",
+        "stroke": "#2563eb"
+      }
+    },
+    {
+      "id": "js-docs",
+      "type": "group",
+      "x": 250,
+      "y": 50,
+      "width": 140,
+      "height": 70,
+      "color": "#3b82f6",
+      "pv": {
+        "nodeType": "App",
+        "name": "@pierre/js-docs",
+        "description": "Documentation Site\nNext.js + MDX",
+        "fill": "#e0f2fe",
+        "stroke": "#2563eb"
+      }
+    },
+    {
+      "id": "solid-diff-demo",
+      "type": "group",
+      "x": 450,
+      "y": 50,
+      "width": 130,
+      "height": 70,
+      "color": "#3b82f6",
+      "pv": {
+        "nodeType": "App",
+        "name": "@pierre/solid-diff-demo",
+        "description": "SolidJS Demo\nVinxi + SolidJS",
+        "fill": "#e0f2fe",
+        "stroke": "#2563eb"
+      }
+    },
+    {
+      "id": "diffs-core",
+      "type": "group",
+      "x": 300,
+      "y": 180,
+      "width": 160,
+      "height": 80,
+      "color": "#8b5cf6",
+      "pv": {
+        "nodeType": "CoreLib",
+        "name": "📦 @pierre/diffs",
+        "description": "Core Diff Library\nv1.0.5 • Shiki-based",
+        "fill": "#f3e8ff",
+        "stroke": "#a855f7",
+        "icon": "Library"
+      }
+    },
+    {
+      "id": "storage-elements",
+      "type": "group",
+      "x": 50,
+      "y": 320,
+      "width": 120,
+      "height": 60,
+      "color": "#10b981",
+      "pv": {
+        "nodeType": "UIComponents",
+        "name": "@pierre/storage-elements",
+        "description": "React UI Components\nv0.0.2 • Radix UI",
+        "fill": "#d1fae5",
+        "stroke": "#059663"
+      }
+    },
+    {
+      "id": "storage-elements-next",
+      "type": "group",
+      "x": 250,
+      "y": 320,
+      "width": 120,
+      "height": 60,
+      "color": "#f59e0b",
+      "pv": {
+        "nodeType": "Integration",
+        "name": "@pierre/storage-elements-next",
+        "description": "Next.js Integration\nv0.0.7 • API Utils",
+        "fill": "#fef3c7",
+        "stroke": "#d97706"
+      }
+    },
+    {
+      "id": "bun-runtime",
+      "type": "group",
+      "x": 550,
+      "y": 320,
+      "width": 100,
+      "height": 60,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "🥟 Bun Runtime",
+        "description": "Package Manager & Runtime\n• TypeScript • Testing",
+        "fill": "#1f2937",
+        "stroke": "#14a818"
+      }
+    },
+    {
+      "id": "github-api",
+      "type": "group",
+      "x": 450,
+      "y": 450,
+      "width": 100,
+      "height": 50,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "🐙 GitHub API",
+        "description": "Platform Integration\n• OAuth • Webhooks",
+        "fill": "#1f2937",
+        "stroke": "#14a818"
+      }
+    },
+    {
+      "id": "shiki",
+      "type": "group",
+      "x": 550,
+      "y": 450,
+      "width": 80,
+      "height": 50,
+      "color": "#6b7280",
+      "pv": {
+        "nodeType": "External",
+        "name": "🎨 Shiki",
+        "description": "Syntax Highlighting\n• VS Code Themes",
+        "fill": "#1f2937",
+        "stroke": "#14a818"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "demo-to-diffs",
+      "fromNode": "js-demo",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "docs-to-diffs",
+      "fromNode": "js-docs",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "solid-to-diffs",
+      "fromNode": "solid-diff-demo",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "docs-to-storage-next",
+      "fromNode": "js-docs",
+      "toNode": "storage-elements-next",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "storage-next-to-external",
+      "fromNode": "storage-elements-next",
+      "toNode": "github-api",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#3b82f6",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "diffs-to-shiki",
+      "fromNode": "diffs-core",
+      "toNode": "shiki",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#f59e0b",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "docs-to-github",
+      "fromNode": "js-docs",
+      "toNode": "github-api",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#8b5cf6",
+      "pv": {
+        "edgeType": "IntegratesWith"
+      }
+    },
+    {
+      "id": "storage-to-github",
+      "fromNode": "storage-elements",
+      "toNode": "github-api",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "color": "#8b5cf6",
+      "pv": {
+        "edgeType": "IntegratesWith"
+      }
+    },
+    {
+      "id": "bun-to-js-demo",
+      "fromNode": "bun-runtime",
+      "toNode": "js-demo",
+      "fromSide": "right",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-js-docs",
+      "fromNode": "bun-runtime",
+      "toNode": "js-docs",
+      "fromSide": "right",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-solid-demo",
+      "fromNode": "bun-runtime",
+      "toNode": "solid-diff-demo",
+      "fromSide": "right",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-diffs-core",
+      "fromNode": "bun-runtime",
+      "toNode": "diffs-core",
+      "fromSide": "right",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-storage-elements",
+      "fromNode": "bun-runtime",
+      "toNode": "storage-elements",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-storage-next",
+      "fromNode": "bun-runtime",
+      "toNode": "storage-elements-next",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-github",
+      "fromNode": "bun-runtime",
+      "toNode": "github-api",
+      "fromSide": "right",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "IntegratesWith"
+      }
+    }
+  ]
+}
