@@ -233,6 +233,72 @@
       "pv": {
         "edgeType": "IntegratesWith"
       }
+    },
+    {
+      "id": "bun-to-js-demo",
+      "fromNode": "bun-runtime",
+      "toNode": "js-demo",
+      "fromSide": "left",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-js-docs",
+      "fromNode": "bun-runtime",
+      "toNode": "js-docs",
+      "fromSide": "left",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-solid-demo",
+      "fromNode": "bun-runtime",
+      "toNode": "solid-diff-demo",
+      "fromSide": "left",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-diffs-core",
+      "fromNode": "bun-runtime",
+      "toNode": "diffs-core",
+      "fromSide": "bottom",
+      "toSide": "right",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-storage-elements",
+      "fromNode": "bun-runtime",
+      "toNode": "storage-elements",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "bun-to-storage-next",
+      "fromNode": "bun-runtime",
+      "toNode": "storage-elements-next",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "color": "#6b7280",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
     }
   ]
 }
