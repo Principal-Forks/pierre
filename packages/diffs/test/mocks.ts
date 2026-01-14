@@ -186,3 +186,17 @@ index c4a19b419..000000000
 -    </ProseWrapper>
 -  );
 -}`;
+
+export const finalBlankLinePatch = `--- packages/svelte/src/compiler/phases/3-transform/client/visitors/Fragment.js
++++ packages/svelte/src/compiler/phases/3-transform/client/visitors/Fragment.js
+@@ -47,9 +47,7 @@ export function Fragment(node, context) {
+ \tconst is_single_element = trimmed.length === 1 && trimmed[0].type === 'RegularElement';
+ \tconst is_single_child_not_needing_template =
+ \t\ttrimmed.length === 1 &&
+-\t\t(trimmed[0].type === 'SvelteFragment' ||
+-\t\t\ttrimmed[0].type === 'TitleElement' ||
+-\t\t\t(trimmed[0].type === 'IfBlock' && trimmed[0].elseif));
++\t\t(trimmed[0].type === 'SvelteFragment' || trimmed[0].type === 'TitleElement');
+ 
+ \tconst template_name = context.state.scope.root.unique('root'); // TODO infer name from parent
+ `;

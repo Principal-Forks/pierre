@@ -2,7 +2,7 @@ import { describe, expect, spyOn, test } from 'bun:test';
 
 import { DiffHunksRenderer } from '../src/renderers/DiffHunksRenderer';
 import { parsePatchFiles } from '../src/utils/parsePatchFiles';
-import { diffPatch, malformedPatch } from './mocks';
+import { diffPatch, finalBlankLinePatch, malformedPatch } from './mocks';
 import {
   assertDefined,
   countRenderedLines,
@@ -14,6 +14,11 @@ describe('parsePatchFiles', () => {
   const result = parsePatchFiles(diffPatch);
   test('should parse diff.patch and match snapshot', () => {
     expect(result).toMatchSnapshot('git pr patch file');
+  });
+
+  test('patches with a final blank line should have a \\n added', () => {
+    const result = parsePatchFiles(finalBlankLinePatch);
+    expect(result).toMatchSnapshot('final blank line patch');
   });
 
   test('should have accurate hunk line values', () => {
