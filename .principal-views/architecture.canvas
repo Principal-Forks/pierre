@@ -7,10 +7,10 @@
     {
       "id": "js-demo",
       "type": "group",
-      "x": 50,
-      "y": 50,
+      "x": 60,
+      "y": 56,
       "width": 130,
-      "height": 70,
+      "height": 54,
       "color": "#3b82f6",
       "pv": {
         "nodeType": "App",
@@ -23,10 +23,10 @@
     {
       "id": "js-docs",
       "type": "group",
-      "x": 250,
-      "y": 50,
+      "x": 223,
+      "y": 56,
       "width": 140,
-      "height": 70,
+      "height": 54,
       "color": "#3b82f6",
       "pv": {
         "nodeType": "App",
@@ -39,10 +39,10 @@
     {
       "id": "solid-diff-demo",
       "type": "group",
-      "x": 450,
-      "y": 50,
-      "width": 130,
-      "height": 70,
+      "x": 468,
+      "y": 53,
+      "width": 140,
+      "height": 54,
       "color": "#3b82f6",
       "pv": {
         "nodeType": "App",
@@ -55,10 +55,10 @@
     {
       "id": "diffs-core",
       "type": "group",
-      "x": 300,
-      "y": 180,
+      "x": 297,
+      "y": -81,
       "width": 160,
-      "height": 80,
+      "height": 57,
       "color": "#8b5cf6",
       "pv": {
         "nodeType": "CoreLib",
@@ -72,8 +72,8 @@
     {
       "id": "storage-elements",
       "type": "group",
-      "x": 50,
-      "y": 320,
+      "x": 88,
+      "y": 237,
       "width": 120,
       "height": 60,
       "color": "#10b981",
@@ -88,10 +88,10 @@
     {
       "id": "storage-elements-next",
       "type": "group",
-      "x": 250,
-      "y": 320,
-      "width": 120,
-      "height": 60,
+      "x": 256,
+      "y": 304,
+      "width": 127,
+      "height": 70,
       "color": "#f59e0b",
       "pv": {
         "nodeType": "Integration",
@@ -104,9 +104,9 @@
     {
       "id": "bun-runtime",
       "type": "group",
-      "x": 550,
-      "y": 320,
-      "width": 100,
+      "x": 473,
+      "y": 277,
+      "width": 106,
       "height": 60,
       "color": "#6b7280",
       "pv": {
@@ -120,10 +120,10 @@
     {
       "id": "github-api",
       "type": "group",
-      "x": 450,
-      "y": 450,
-      "width": 100,
-      "height": 50,
+      "x": 157,
+      "y": 436,
+      "width": 110,
+      "height": 54,
       "color": "#6b7280",
       "pv": {
         "nodeType": "External",
@@ -136,10 +136,10 @@
     {
       "id": "shiki",
       "type": "group",
-      "x": 550,
-      "y": 450,
-      "width": 80,
-      "height": 50,
+      "x": 366,
+      "y": 170,
+      "width": 95,
+      "height": 62,
       "color": "#6b7280",
       "pv": {
         "nodeType": "External",
@@ -151,39 +151,6 @@
     }
   ],
   "edges": [
-    {
-      "id": "demo-to-diffs",
-      "fromNode": "js-demo",
-      "toNode": "diffs-core",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "color": "#3b82f6",
-      "pv": {
-        "edgeType": "DependsOn"
-      }
-    },
-    {
-      "id": "docs-to-diffs",
-      "fromNode": "js-docs",
-      "toNode": "diffs-core",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "color": "#3b82f6",
-      "pv": {
-        "edgeType": "DependsOn"
-      }
-    },
-    {
-      "id": "solid-to-diffs",
-      "fromNode": "solid-diff-demo",
-      "toNode": "diffs-core",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "color": "#3b82f6",
-      "pv": {
-        "edgeType": "DependsOn"
-      }
-    },
     {
       "id": "docs-to-storage-next",
       "fromNode": "js-docs",
@@ -240,80 +207,103 @@
       }
     },
     {
-      "id": "bun-to-js-demo",
+      "id": "edge-solid-diff-demo-diffs-core-1768364488896",
+      "fromNode": "solid-diff-demo",
+      "toNode": "diffs-core",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "edge-js-docs-diffs-core-1768364488897",
+      "fromNode": "js-docs",
+      "toNode": "diffs-core",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "edge-js-demo-diffs-core-1768364488897",
+      "fromNode": "js-demo",
+      "toNode": "diffs-core",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "pv": {
+        "edgeType": "DependsOn"
+      }
+    },
+    {
+      "id": "edge-bun-runtime-js-demo-1768364488897",
       "fromNode": "bun-runtime",
       "toNode": "js-demo",
-      "fromSide": "right",
-      "toSide": "right",
-      "color": "#6b7280",
+      "fromSide": "left",
+      "toSide": "bottom",
       "pv": {
         "edgeType": "UsesAPI"
       }
     },
     {
-      "id": "bun-to-js-docs",
-      "fromNode": "bun-runtime",
-      "toNode": "js-docs",
-      "fromSide": "right",
-      "toSide": "right",
-      "color": "#6b7280",
-      "pv": {
-        "edgeType": "UsesAPI"
-      }
-    },
-    {
-      "id": "bun-to-solid-demo",
-      "fromNode": "bun-runtime",
-      "toNode": "solid-diff-demo",
-      "fromSide": "right",
-      "toSide": "right",
-      "color": "#6b7280",
-      "pv": {
-        "edgeType": "UsesAPI"
-      }
-    },
-    {
-      "id": "bun-to-diffs-core",
-      "fromNode": "bun-runtime",
-      "toNode": "diffs-core",
-      "fromSide": "right",
-      "toSide": "right",
-      "color": "#6b7280",
-      "pv": {
-        "edgeType": "UsesAPI"
-      }
-    },
-    {
-      "id": "bun-to-storage-elements",
+      "id": "edge-bun-runtime-storage-elements-1768364488897",
       "fromNode": "bun-runtime",
       "toNode": "storage-elements",
-      "fromSide": "bottom",
-      "toSide": "left",
-      "color": "#6b7280",
+      "fromSide": "left",
+      "toSide": "right",
       "pv": {
         "edgeType": "UsesAPI"
       }
     },
     {
-      "id": "bun-to-storage-next",
+      "id": "edge-bun-runtime-storage-elements-next-1768364488897",
       "fromNode": "bun-runtime",
       "toNode": "storage-elements-next",
-      "fromSide": "bottom",
-      "toSide": "left",
-      "color": "#6b7280",
+      "fromSide": "left",
+      "toSide": "right",
       "pv": {
         "edgeType": "UsesAPI"
       }
     },
     {
-      "id": "bun-to-github",
+      "id": "edge-bun-runtime-github-api-1768364488897",
       "fromNode": "bun-runtime",
       "toNode": "github-api",
-      "fromSide": "right",
+      "fromSide": "bottom",
       "toSide": "right",
-      "color": "#6b7280",
       "pv": {
         "edgeType": "IntegratesWith"
+      }
+    },
+    {
+      "id": "edge-bun-runtime-diffs-core-1768364488897",
+      "fromNode": "bun-runtime",
+      "toNode": "diffs-core",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "edge-bun-runtime-solid-diff-demo-1768364488897",
+      "fromNode": "bun-runtime",
+      "toNode": "solid-diff-demo",
+      "fromSide": "top",
+      "toSide": "right",
+      "pv": {
+        "edgeType": "UsesAPI"
+      }
+    },
+    {
+      "id": "edge-bun-runtime-js-docs-1768364488897",
+      "fromNode": "bun-runtime",
+      "toNode": "js-docs",
+      "fromSide": "top",
+      "toSide": "right",
+      "pv": {
+        "edgeType": "UsesAPI"
       }
     }
   ]
